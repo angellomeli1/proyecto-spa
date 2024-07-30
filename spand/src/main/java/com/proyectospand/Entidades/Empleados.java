@@ -5,6 +5,6 @@ public class Empleados {
     private String nombre;
     private String apellido;
     private String calle;
-    private String nss;
     private String colonia;
+    private String nss;
 }
