@@ -5,4 +5,5 @@ public class Empleado {
     private String nombre;
     private String apellido;
     private String calle;
+    private String nss;
 }
