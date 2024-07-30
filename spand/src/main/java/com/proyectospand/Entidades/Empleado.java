@@ -4,4 +4,5 @@ public class Empleado {
     // Atributos
     private String nombre;
     private String apellido;
+    private String calle;
 }
