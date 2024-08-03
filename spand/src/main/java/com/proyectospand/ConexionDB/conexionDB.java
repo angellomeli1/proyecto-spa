@@ -1,43 +1,54 @@
 package com.proyectospand.ConexionDB;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.Duration;
 
-import javax.swing.JOptionPane;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 public class conexionDB {
-    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final String URL = "jdbc:mysql://localhost:3306/";
+
     private final String DB = "dbspa";
+    private final String URL = "jdbc:mysql://localhost:3306/";
+    private final String USER = "nuevoUsuario";
+    private final String PASS = "123";
 
-    public Connection conn;
+    private static conexionDB dataSource;
+    private BasicDataSource basicDataSource;
 
-    public conexionDB(){
-        this.conn = null;
+    private conexionDB(){
+        basicDataSource = new BasicDataSource();
+        basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        basicDataSource.setUsername(USER);
+        basicDataSource.setPassword(PASS);
+        basicDataSource.setUrl(URL+DB);
+
+        basicDataSource.setMinIdle(5);
+        basicDataSource.setMaxIdle(20);
+        basicDataSource.setMaxTotal(50);
+        basicDataSource.setMaxWait(Duration.ofMillis(10000));
     }
 
-    public Connection conectar(String USER, String PASS){
-        try {
-            Class.forName(DRIVER);
-            this.conn= DriverManager.getConnection(URL+DB,USER, PASS);
-            System.out.println("Conectado");
-        } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            System.out.println("Error");
+    public static conexionDB getIntance(){
+        if(dataSource == null){
+            dataSource = new conexionDB(); 
         }
-        return this.conn;
+        return dataSource;
     }
 
-    public Connection desconectar(){
+    public Connection getConnection(){
+        Connection connect = null;
         try {
-            this.conn.close();
-            System.out.println("Desconectado");
+            connect = this.basicDataSource.getConnection();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());  
-            System.out.println("Error al desconectar");
+            System.out.println(e.getMessage());
         }
-        return this.conn;
+        return connect;
+
+    }
+
+    public void closeConnection (Connection connection) throws SQLException{
+        connection.close();
     }
 
 }
