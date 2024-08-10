@@ -1,43 +1,70 @@
 package com.proyectospand.ConexionDB;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.Duration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import javax.swing.JOptionPane;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 public class conexionDB {
-    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final String URL = "jdbc:mysql://localhost:3306/";
+
+    //Partes esenciales para la conexion a la base de datos mediante el pool de conexiones
     private final String DB = "dbspa";
+    private final String URL = "jdbc:mysql://localhost:3306/";
+    //Usuario que va a crear el pool de conexiones.
+    private final String USER = "nuevoUsuario";
+    private final String PASS = "123";
 
-    public Connection conn;
+    //Objeto statico de la clase para que solo exista una instancia.
+    private static conexionDB dataSource;
+    //Objeto de la libreria commons-dbcp2
+    private BasicDataSource basicDataSource;
 
-    public conexionDB(){
-        this.conn = null;
+    private static final Logger LOGGER = Logger.getLogger(conexionDB.class.getName());
+
+    private conexionDB(){
+        //Al momento de crear por primera vez la instancia se abre el pool de conexiones
+        basicDataSource = new BasicDataSource();
+        //Se definen las propiedades de la base de datos como el driver, url, el usuario y la contraseña
+        basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        basicDataSource.setUsername(USER);
+        basicDataSource.setPassword(PASS);
+        basicDataSource.setUrl(URL+DB);
+
+        basicDataSource.setMinIdle(5);
+        basicDataSource.setMaxIdle(20);
+        basicDataSource.setMaxTotal(50);
+        basicDataSource.setMaxWait(Duration.ofMillis(10000));
     }
 
-    public Connection conectar(String USER, String PASS){
-        try {
-            Class.forName(DRIVER);
-            this.conn= DriverManager.getConnection(URL+DB,USER, PASS);
-            System.out.println("Conectado");
-        } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            System.out.println("Error");
+    //Metodo para obtener la instancia de la clase con el patrón singleton
+    public static conexionDB getIntance(){
+        //Si no existe la instancia la crea
+        if(dataSource == null){
+            dataSource = new conexionDB(); 
         }
-        return this.conn;
+        //Devuelve la instancia
+        return dataSource;
     }
 
-    public Connection desconectar(){
+
+    //El metodo get connection se encargará de otorgar una conexión de la pool a la base de datos.
+    public Connection getConnection() throws SQLException{
+        Connection connect = null;
         try {
-            this.conn.close();
-            System.out.println("Desconectado");
+            connect = this.basicDataSource.getConnection();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());  
-            System.out.println("Error al desconectar");
+            LOGGER.log(Level.SEVERE,"Error al obtener la conexión a la base de datos", e);
+            throw e;
         }
-        return this.conn;
+        return connect;
+    }
+
+    //Metodo para cerrar la conexión a la base de datos
+    public void closeConnection (Connection connection) throws SQLException{
+        connection.close();
     }
 
 }
