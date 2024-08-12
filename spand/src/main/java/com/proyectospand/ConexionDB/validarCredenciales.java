@@ -1,35 +1,57 @@
 package com.proyectospand.ConexionDB;
 
+import com.proyectospand.Entidades.Empleados;
+import com.proyectospand.Entidades.TipoEmpleado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
-//Esta clase es la encargada de hacer las validaciones para otorgar el acceso al sistema siempre y cuando el 
-//usuario y la contraseña coincidan con alguno de los empleados.
 public class validarCredenciales {
-    //Esto se logra mediante el metodo autenticarlogin el cual toma como parametros el usuairo y contraseña.
-    public boolean autenticarLogin(String user, String password){
-        //Query para la base de datos, donde se selecciona la coincidencia del usuario y la contraseña
-        String query = "SELECT * FROM empleado where nombreEmp = ? and clave = ? ";
-
-        //La consulta se realiza en la base de datos, primero se otorga una conexión de la pool de conexiones
+    
+    public Empleados autenticarLogin(String user, String password) {
+        String query = "SELECT e.idEmpleado, e.nombreEmp, e.apellidosEmp, e.calle, e.numero, e.colonia, e.nss, e.fechaContrato, e.activo, e.clave, "
+                     + "t.idTipoEmpleado, t.nombreTipo, t.sueldo "
+                     + "FROM empleado e "
+                     + "JOIN tipoEmpleado t ON e.TipoEmpleado_idTipoEmpleado = t.idTipoEmpleado "
+                     + "WHERE e.nombreEmp = ? AND e.clave = ?";
         try (Connection conexion = conexionDB.getIntance().getConnection()) {
-            //Se prepara la consulta para la base de datos
             PreparedStatement statement = conexion.prepareStatement(query);
-            //Se insertan los valores de usuario y contraseña en la consulta
             statement.setString(1, user);
             statement.setString(2, password);
-
-            //Se realiza la consulta
-            try (ResultSet resultSet = statement.executeQuery()){
-                //Se retorna el resultado, resultSet.next() retorna true si hay coincidencias
-                return resultSet.next();
+            
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Cargar la información del empleado desde el ResultSet
+                    int idEmpleado = resultSet.getInt("idEmpleado");
+                    String nombreEmp = resultSet.getString("nombreEmp");
+                    String apellidosEmp = resultSet.getString("apellidosEmp");
+                    String calle = resultSet.getString("calle");
+                    String numero = resultSet.getString("numero");
+                    String colonia = resultSet.getString("colonia");
+                    String nss = resultSet.getString("nss");
+                    Date fechaDeContrato = resultSet.getDate("fechaContrato");
+                    boolean activo = resultSet.getBoolean("activo");
+                    String contrasena = resultSet.getString("clave");
+                    
+                    // Información del tipo de empleado
+                    int idTipoEmpleado = resultSet.getInt("idTipoEmpleado");
+                    String nombreTipo = resultSet.getString("nombreTipo");
+                    double sueldo = resultSet.getDouble("sueldo");
+                    TipoEmpleado tipo = new TipoEmpleado(idTipoEmpleado, nombreTipo, sueldo);
+                    
+                    // Crear el objeto Empleados con la información obtenida
+                    Empleados empleado = new Empleados(idEmpleado, nombreEmp, tipo, apellidosEmp, calle, numero, colonia, nss, fechaDeContrato, activo, contrasena);
+                    
+                    // Retornar el objeto Empleados
+                    return empleado;
+                }
             }
         } catch (SQLException e) {
-            //En caso de error se retorna false y se manda el error por consola
             e.printStackTrace();
-            return false;
         }
+        
+        return null; // Devuelve null si las credenciales son incorrectas
     }
 }

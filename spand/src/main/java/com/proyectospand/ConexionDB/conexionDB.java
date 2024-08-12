@@ -14,8 +14,8 @@ public class conexionDB {
     private final String DB = "dbspa";
     private final String URL = "jdbc:mysql://localhost:3306/";
     //Usuario que va a crear el pool de conexiones.
-    private final String USER = "nuevoUsuario";
-    private final String PASS = "123";
+    private final String USER = "connectionPool";
+    private final String PASS = "1234567890";
 
     //Objeto statico de la clase para que solo exista una instancia.
     private static conexionDB dataSource;
