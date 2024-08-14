@@ -1,7 +1,8 @@
 
 package com.proyectospand.Interfaces.ventanaPrincipal;
 import com.proyectospand.Entidades.Empleados;
-import com.proyectospand.Interfaces.confUI;;;
+import com.proyectospand.Interfaces.confUI;
+import com.proyectospand.Interfaces.Inventario.*;
 public class menuPrincipalInventarista extends javax.swing.JFrame {
 
     private Empleados empleado = new Empleados();
@@ -12,6 +13,12 @@ public class menuPrincipalInventarista extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         confUI.applyCustomFont(16f, lblBienvenida);
         lblBienvenida.setText("BIENVENIDO: " + empleado.getNombreEmp() + " - Rol: " + empleado.getTipo().getNombreTipo());
+        ventanaInventario inventario = new ventanaInventario();
+        inventario.setSize(1180,610);
+        inventario.setLocation(0,0);
+        jPanel1.add(inventario);
+        jPanel1.revalidate();
+        jPanel1.repaint();
     }
     
     @SuppressWarnings("unchecked")
@@ -20,34 +27,32 @@ public class menuPrincipalInventarista extends javax.swing.JFrame {
 
         pnlFondo = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblBienvenida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        pnlFondo.setBackground(new java.awt.Color(230, 230, 250));
+        pnlFondo.setBackground(new java.awt.Color(255, 255, 255));
         pnlFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1180, Short.MAX_VALUE)
+            .addGap(0, 1178, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
 
         pnlFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 1180, 610));
-
-        jPanel2.setBackground(new java.awt.Color(230, 230, 250));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        pnlFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, 640));
 
         jPanel3.setBackground(new java.awt.Color(220, 220, 240));
 
@@ -81,7 +86,7 @@ public class menuPrincipalInventarista extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -126,7 +131,6 @@ public class menuPrincipalInventarista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblBienvenida;
     private javax.swing.JPanel pnlFondo;
