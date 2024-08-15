@@ -1,32 +1,7 @@
-<<<<<<< HEAD
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\datos\interfaces\Crud.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Login\Login.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Entidades\Producto.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Entidades\Empleados.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\ventanaPrincipal\menuPrincipalRecepcionista.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Entidades\Proveedores.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Clientes\ClientesInterfaz.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\confUI.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\datos\Producto.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Proveedores\VentanaProveedor.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Inventario\RegistrarProductoForm.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Citas\ventanaCitas.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Empleados\RegistrarEmpleadoForm.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Inventario\ventanaInventario.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\ConexionDB\validarCredenciales.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Empleados\VentanaEmpleados.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Proveedores\RegistrarProveedorForm.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Entidades\Venta.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\ConexionDB\conexionDB.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Entidades\Clientes.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\ventanaPrincipal\menuPrincipalInventarista.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Empleados\RegistrarEmpleadosForm2.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\Citas\citasForm.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Entidades\TipoEmpleado.java
-C:\Users\omarr\Downloads\ProyectoSPA\proyecto-spa\spand\src\main\java\com\proyectospand\Interfaces\ventanaPrincipal\menuPrincipalAdministrador.java
-=======
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\ventanaPrincipal\menuPrincipalRecepcionista.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\ventanaPrincipal\menuPrincipalAdministrador.java
+C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\Empleados\VentanaEmpleados.java
+C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\Empleados\RegistrarEmpleadosForm2.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\Inventario\RegistrarProductoForm.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\Proveedores\RegistrarProveedorForm.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\Citas\panelMasajistas.java
@@ -42,6 +17,7 @@ C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyecto
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\datos\Producto.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\datos\interfaces\Crud.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Entidades\Producto.java
+C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\Empleados\RegistrarEmpleadoForm.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Entidades\Venta.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\ventanaPrincipal\menuPrincipalInventarista.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Entidades\TipoEmpleado.java
@@ -50,4 +26,3 @@ C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyecto
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Entidades\Proveedores.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\Citas\citasForm.java
 C:\Users\ING. Lomelí\Desktop\repo-del-proyecto\spand\src\main\java\com\proyectospand\Interfaces\Citas\panelClientes.java
->>>>>>> interfacesDAO
