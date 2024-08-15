@@ -3,6 +3,7 @@ package com.proyectospand.Interfaces.ventanaPrincipal;
 import com.proyectospand.Entidades.Empleados;
 import com.proyectospand.Interfaces.confUI;
 import com.proyectospand.Interfaces.Inventario.*;
+
 public class menuPrincipalAdministrador extends javax.swing.JFrame {
 
     private Empleados empleado = new Empleados();
