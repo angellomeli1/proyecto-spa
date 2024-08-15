@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.proyectospand.Interfaces.Clientes;
 
 import java.awt.Color;
@@ -347,9 +343,59 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtTelefonoClienteMousePressed
 
+    // Métodos GET Y SET
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblApellidosCliente;
+    public javax.swing.JTextField getTxtApellidosCliente() {
+        return txtApellidosCliente;
+    }
+
+    public void setTxtApellidosCliente(javax.swing.JTextField txtApellidosCliente) {
+        this.txtApellidosCliente = txtApellidosCliente;
+    }
+
+    public javax.swing.JTextField getTxtCalleCliente() {
+        return txtCalleCliente;
+    }
+
+    public void setTxtCalleCliente(javax.swing.JTextField txtCalleCliente) {
+        this.txtCalleCliente = txtCalleCliente;
+    }
+
+    public javax.swing.JTextField getTxtColoniaCliente() {
+        return txtColoniaCliente;
+    }
+
+    public void setTxtColoniaCliente(javax.swing.JTextField txtColoniaCliente) {
+        this.txtColoniaCliente = txtColoniaCliente;
+    }
+
+    public javax.swing.JTextField getTxtNombreCliente() {
+        return txtNombreCliente;
+    }
+
+    public void setTxtNombreCliente(javax.swing.JTextField txtNombreCliente) {
+        this.txtNombreCliente = txtNombreCliente;
+    }
+
+    public javax.swing.JTextField getTxtNumeroCliente() {
+        return txtNumeroCliente;
+    }
+
+    public void setTxtNumeroCliente(javax.swing.JTextField txtNumeroCliente) {
+        this.txtNumeroCliente = txtNumeroCliente;
+    }
+
+    public javax.swing.JTextField getTxtTelefonoCliente() {
+        return txtTelefonoCliente;
+    }
+
+    public void setTxtTelefonoCliente(javax.swing.JTextField txtTelefonoCliente) {
+        this.txtTelefonoCliente = txtTelefonoCliente;
+    }
+
     private javax.swing.JLabel lblCalleCliente;
     private javax.swing.JLabel lblColoniaCliente;
     private javax.swing.JLabel lblNombreCliente;
@@ -362,4 +408,5 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtNumeroCliente;
     private javax.swing.JTextField txtTelefonoCliente;
     // End of variables declaration//GEN-END:variables
+    public Object getTxtNombreCliente;
 }
