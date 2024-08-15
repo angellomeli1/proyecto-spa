@@ -2,7 +2,14 @@ package com.proyectospand.Interfaces.Clientes;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +32,8 @@ public class VentanaClientes extends javax.swing.JPanel {
         pnlFormClient.add(rclient, BorderLayout.CENTER);
         pnlFormClient.revalidate();
         pnlFormClient.repaint();
+
+        cargarDatosClientes();
     }
 
     /**
@@ -187,6 +196,11 @@ public class VentanaClientes extends javax.swing.JPanel {
         bttnEliminar.setBorder(null);
         bttnEliminar.setBorderPainted(false);
         bttnEliminar.setContentAreaFilled(false);
+        bttnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnEliminarActionPerformed(evt);
+            }
+        });
         pnlBotones.add(bttnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 72, 60));
 
         lblEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -199,6 +213,11 @@ public class VentanaClientes extends javax.swing.JPanel {
         bttnGuardar.setBorderPainted(false);
         bttnGuardar.setContentAreaFilled(false);
         bttnGuardar.setEnabled(false);
+        bttnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnGuardarActionPerformed(evt);
+            }
+        });
         pnlBotones.add(bttnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 72, 60));
 
         lblGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -289,6 +308,121 @@ public class VentanaClientes extends javax.swing.JPanel {
         //Una vez que la query sea exitosa y guarde los cambios, los campos se deshabilitaran
     }//GEN-LAST:event_bttnEditarActionPerformed
 
+    private void bttnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGuardarActionPerformed
+        if  (modoAgregar == true) {
+            // Obtener los valores de los campos de texto
+            String nombreCliente = rclient.getTxtNombreCliente().getText();
+            String apellidosCliente = rclient.getTxtApellidosCliente().getText();
+            String calleCliente = rclient.getTxtCalleCliente().getText();
+            String numeroCliente = rclient.getTxtNumeroCliente().getText();
+            String coloniaCliente = rclient.getTxtColoniaCliente().getText();
+            String telefonoCliente = rclient.getTxtTelefonoCliente().getText();
+        
+            // Asumimos que el idEmpleado es conocido, aquí por ejemplo es 1
+            int idEmpleado = 1;  
+        
+            // Conectar a la base de datos y llamar al procedimiento almacenado AgregarCliente
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
+                String sql = "{CALL AgregarCliente(?, ?, ?, ?, ?, ?, ?)}";
+                try (CallableStatement stmt = conn.prepareCall(sql)) {
+                    stmt.setInt(1, idEmpleado);
+                    stmt.setString(2, nombreCliente);
+                    stmt.setString(3, apellidosCliente);
+                    stmt.setString(4, calleCliente);
+                    stmt.setString(5, numeroCliente);
+                    stmt.setString(6, coloniaCliente);
+                    stmt.setBoolean(7, true); // Activo
+                    
+                    // Ejecutar el procedimiento almacenado
+                    stmt.execute();
+                    
+                    System.out.println("Cliente agregado exitosamente.");
+                }
+                cargarDatosClientes();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Error al agregar el cliente: " + ex.getMessage());
+            }  
+        } if (modoAgregar == false) {
+            // Obtener los valores de los campos de texto
+            String nombreCliente = rclient.getTxtNombreCliente().getText();
+            String apellidosCliente = rclient.getTxtApellidosCliente().getText();
+            String calleCliente = rclient.getTxtCalleCliente().getText();
+            String numeroCliente = rclient.getTxtNumeroCliente().getText();
+            String coloniaCliente = rclient.getTxtColoniaCliente().getText();
+            String telefonoCliente = rclient.getTxtTelefonoCliente().getText();
+        
+            // Asumimos que el idEmpleado es conocido, aquí por ejemplo es 1
+            int idEmpleado = 1;  
+            int idCliente = 0;
+
+            // Conectar a la base de datos y llamar al procedimiento almacenado AgregarCliente
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
+                String sql = "{CALL ActualizarCliente(?, ?, ?, ?, ?, ?, ?,?)}";
+                try (CallableStatement stmt = conn.prepareCall(sql)) {
+                    stmt.setInt(1, idEmpleado);
+                    stmt.setInt(2, idCliente);
+                    stmt.setString(3, nombreCliente);
+                    stmt.setString(4, apellidosCliente);
+                    stmt.setString(5, calleCliente);
+                    stmt.setString(6, numeroCliente);
+                    stmt.setString(7, coloniaCliente);
+                    stmt.setBoolean(8, true); // Activo
+                    
+                    // Ejecutar el procedimiento almacenado
+                    stmt.execute();
+                    
+                    System.out.println("Cliente actualizado exitosamente.");
+                }
+                cargarDatosClientes();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Error al actualizar el cliente: " + ex.getMessage());
+            }  
+        } else {
+            System.out.println("Error al agregar el cliente.");
+        }
+    }//GEN-LAST:event_bttnGuardarActionPerformed
+
+    private void bttnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarActionPerformed
+        // Obtener la fila seleccionada
+    int filaSeleccionada = jTable1.getSelectedRow();
+    int idEmpleado = 1;
+
+    if (filaSeleccionada == -1) {
+        // No se ha seleccionado ninguna fila
+        javax.swing.JOptionPane.showMessageDialog(this, "Por favor, selecciona un cliente para eliminar.", "Advertencia", javax.swing.JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Obtener el ID del cliente de la primera columna
+    int idCliente = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+
+    // Confirmar la eliminación
+    int confirmacion = javax.swing.JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este cliente?", "Confirmación", javax.swing.JOptionPane.YES_NO_OPTION);
+
+    if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
+        // Proceder con la eliminación
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
+            String sql = "{CALL EliminarCliente(?,?)}";
+            try (CallableStatement stmt = conn.prepareCall(sql)) {
+                stmt.setInt(1, idCliente);
+                stmt.setInt(2, idEmpleado);
+
+                // Ejecutar el procedimiento almacenado
+                stmt.execute();
+                
+                javax.swing.JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente.", "Éxito", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+            // Recargar los datos de la tabla
+            cargarDatosClientes();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al eliminar el cliente: " + ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_bttnEliminarActionPerformed
+
     // Funciones
     private void habilitarCampos(boolean habilitar){
         Component[] componentes = rclient.getComponents();
@@ -305,6 +439,35 @@ public class VentanaClientes extends javax.swing.JPanel {
         lblGuardar.setEnabled(habilitar);
         lblCancelar.setEnabled(habilitar);
     }
+
+    // Función para cargar los datos de la base de datos
+    private void cargarDatosClientes() {
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); // Limpiar la tabla
+
+    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
+        String sql = "SELECT idCliente, nombreCliente, apellidos, calle, numero, colonia, activo FROM cliente";
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Object[] row = new Object[7];
+                row[0] = rs.getInt("idCliente");
+                row[1] = rs.getString("nombreCliente");
+                row[2] = rs.getString("apellidos");
+                row[3] = rs.getString("calle");
+                row[4] = rs.getString("numero");
+                row[5] = rs.getString("colonia");
+                row[6] = rs.getBoolean("activo")?"Si":"No";
+                model.addRow(row); // Agregar fila al modelo
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        System.out.println("Error al cargar los clientes: " + ex.getMessage());
+    }
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnAgregar;
