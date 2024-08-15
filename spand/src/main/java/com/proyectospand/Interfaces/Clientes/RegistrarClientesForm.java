@@ -285,7 +285,7 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCalleClienteMousePressed
 
     private void txtNumeroClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumeroClienteFocusGained
-        if (txtNumeroCliente.getText().equals("Ingresa el numero del cliente")){ 
+        if (txtNumeroCliente.getText().equals("Ingresa el número del cliente")){ 
             txtNumeroCliente.setText("");
             txtNumeroCliente.setForeground(Color.black);
         }
@@ -293,13 +293,13 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
 
     private void txtNumeroClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNumeroClienteMouseExited
         if (txtNumeroCliente.getText().isEmpty()){ 
-            txtNumeroCliente.setText("Ingresa el numero del cliente");
+            txtNumeroCliente.setText("Ingresa el número del cliente");
             txtNumeroCliente.setForeground(Color.GRAY);
         }
     }//GEN-LAST:event_txtNumeroClienteMouseExited
 
     private void txtNumeroClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNumeroClienteMousePressed
-        if (txtNumeroCliente.getText().equals("Ingresa el numero del cliente")){ 
+        if (txtNumeroCliente.getText().equals("Ingresa el número del cliente")){ 
             txtNumeroCliente.setText("");
             txtNumeroCliente.setForeground(Color.black);
         }
