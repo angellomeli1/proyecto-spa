@@ -70,7 +70,7 @@ public class VentanaEmpleados extends javax.swing.JPanel {
         lblRegistrarEmpleado.setText("¡REGISTRA UN EMPLEADO!");
 
         lblInformacionEmpleado.setForeground(new java.awt.Color(105, 105, 105));
-        lblInformacionEmpleado.setText("Completa la información del proveedor");
+        lblInformacionEmpleado.setText("Completa la información del empleado");
 
         pnlFormEmp.setBackground(new java.awt.Color(230, 230, 250));
 
@@ -104,7 +104,9 @@ public class VentanaEmpleados extends javax.swing.JPanel {
                     .addGroup(pnlOpcionesEmpleadosLayout.createSequentialGroup()
                         .addGroup(pnlOpcionesEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblRegistrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblInformacionEmpleado))
+                            .addGroup(pnlOpcionesEmpleadosLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblInformacionEmpleado)))
                         .addGap(0, 20, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(pnlOpcionesEmpleadosLayout.createSequentialGroup()
@@ -135,13 +137,13 @@ public class VentanaEmpleados extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Empleado", "Tipo de Empleado", "Nombre", "Apellidos", "Calle", "Colonia", "NSS", "Fecha de contrato", "Activo"
+                "ID Empleado", "Tipo de Empleado", "Nombre", "Apellidos", "Calle", "Colonia", "NSS", "Fecha de contrato", "Activo", "Teléfono"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -234,7 +236,7 @@ public class VentanaEmpleados extends javax.swing.JPanel {
 
         txtBusqueda.setForeground(new java.awt.Color(153, 153, 153));
         txtBusqueda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtBusqueda.setText("INGRESA EL NOMBRE DEL PRODUCTO A BUSCAR");
+        txtBusqueda.setText("INGRESA EL NOMBRE DEL EMPLEADO A BUSCAR");
 
         javax.swing.GroupLayout pnlVentanaEmpLayout = new javax.swing.GroupLayout(pnlVentanaEmp);
         pnlVentanaEmp.setLayout(pnlVentanaEmpLayout);
