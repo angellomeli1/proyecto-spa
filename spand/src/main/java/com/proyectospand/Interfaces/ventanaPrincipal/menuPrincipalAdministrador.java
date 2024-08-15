@@ -3,11 +3,12 @@ package com.proyectospand.Interfaces.ventanaPrincipal;
 import com.proyectospand.Entidades.Empleados;
 import com.proyectospand.Interfaces.confUI;
 import com.proyectospand.Interfaces.Inventario.*;
-
+import com.proyectospand.Interfaces.Proveedores.*;
 public class menuPrincipalAdministrador extends javax.swing.JFrame {
 
     private Empleados empleado = new Empleados();
     private ventanaInventario inventario = new ventanaInventario();
+    private VentanaProveedor proveedores = new VentanaProveedor();
 
     public menuPrincipalAdministrador(Empleados empleado) {
         this.empleado = empleado;
@@ -28,7 +29,7 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
         bttnClientes = new javax.swing.JButton();
         bttnEmpleados = new javax.swing.JButton();
         bttnInventario = new javax.swing.JButton();
-        bttnEmpleados1 = new javax.swing.JButton();
+        bttnProveedores = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblBienvenida = new javax.swing.JLabel();
 
@@ -98,13 +99,18 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
         });
         jPanel2.add(bttnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 267, 118, -1));
 
-        bttnEmpleados1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
-        bttnEmpleados1.setText("PROVEEDORES");
-        bttnEmpleados1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bttnEmpleados1.setIconTextGap(0);
-        bttnEmpleados1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        bttnEmpleados1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel2.add(bttnEmpleados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 375, 118, -1));
+        bttnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
+        bttnProveedores.setText("PROVEEDORES");
+        bttnProveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bttnProveedores.setIconTextGap(0);
+        bttnProveedores.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        bttnProveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bttnProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnProveedoresActionPerformed(evt);
+            }
+        });
+        jPanel2.add(bttnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 375, 118, -1));
 
         pnlFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, 640));
 
@@ -158,6 +164,15 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
         pnlInterfaces.repaint();
     }//GEN-LAST:event_bttnInventarioActionPerformed
 
+    private void bttnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnProveedoresActionPerformed
+        proveedores.setSize(1180,610);
+        proveedores.setLocation(0, 0);
+        pnlInterfaces.removeAll();
+        pnlInterfaces.add(proveedores);
+        pnlInterfaces.revalidate();
+        pnlInterfaces.repaint();
+    }//GEN-LAST:event_bttnProveedoresActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,8 +213,8 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton bttnCitas;
     private javax.swing.JButton bttnClientes;
     private javax.swing.JButton bttnEmpleados;
-    private javax.swing.JButton bttnEmpleados1;
     private javax.swing.JButton bttnInventario;
+    private javax.swing.JButton bttnProveedores;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblBienvenida;
