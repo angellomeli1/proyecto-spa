@@ -43,7 +43,7 @@
                       </Group>
                   </Group>
                   <Component id="lblCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtTelefono1" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+                  <Component id="txtCorreo" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="136" max="32767" attributes="0"/>
           </Group>
@@ -71,7 +71,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lblCorreo" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="txtTelefono1" min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="txtCorreo" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace pref="97" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -97,6 +97,11 @@
         <Property name="text" type="java.lang.String" value="Ingresa el nombre del proveedor"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtNombreProvFocusGained"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtNombreProvMouseExited"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtNombreProvMousePressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCalle">
       <Properties>
@@ -117,6 +122,11 @@
         <Property name="text" type="java.lang.String" value="Ingresa la calle"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCalleFocusGained"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCalleMouseExited"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCalleMousePressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblColonia">
       <Properties>
@@ -137,6 +147,11 @@
         <Property name="text" type="java.lang.String" value="Ingresa la colonia"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtColoniaFocusGained"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtColoniaMouseExited"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtColoniaMousePressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTelefono">
       <Properties>
@@ -157,6 +172,11 @@
         <Property name="text" type="java.lang.String" value="Ingresa el tel&#xe9;fono"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTelefonoFocusGained"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTelefonoMouseExited"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTelefonoMousePressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCorreo">
       <Properties>
@@ -169,7 +189,7 @@
         <Property name="text" type="java.lang.String" value="Correo*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtTelefono1">
+    <Component class="javax.swing.JTextField" name="txtCorreo">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
@@ -177,6 +197,11 @@
         <Property name="text" type="java.lang.String" value="Ingresa el correo"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCorreoFocusGained"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCorreoMouseExited"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtCorreoMousePressed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
