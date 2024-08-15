@@ -10,7 +10,6 @@ public class Empleados {
     private String numero;
     private String colonia;
     private TelefonoEmp telefono = new TelefonoEmp();
-    private CorreoEmp correo = new CorreoEmp(); 
     private String nss;
     private Date fechaDeContrato;
     private boolean activo;
@@ -143,14 +142,6 @@ public class Empleados {
         this.telefono = telefono;
     }
 
-    public CorreoEmp getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(CorreoEmp correo) {
-        this.correo = correo;
-    }
-
     public class TelefonoEmp{
         private int id;
         private String numero;
@@ -179,37 +170,6 @@ public class Empleados {
 
         public void setNumero(String numero) {
             this.numero = numero;
-        }
-    }
-
-    public class CorreoEmp{
-        private int id;
-        private String correo;
-
-        public CorreoEmp() {
-            this.id = 0;
-            this.correo = "";
-        }
-
-        public CorreoEmp(int id, String correo) {
-            this.id = id;
-            this.correo = correo;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getCorreo() {
-            return correo;
-        }
-
-        public void setCorreo(String correo) {
-            this.correo = correo;
         }
     }
 }
