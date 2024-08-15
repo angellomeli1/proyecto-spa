@@ -4,11 +4,13 @@ import com.proyectospand.Entidades.Empleados;
 import com.proyectospand.Interfaces.confUI;
 import com.proyectospand.Interfaces.Inventario.*;
 import com.proyectospand.Interfaces.Proveedores.*;
+import com.proyectospand.Interfaces.Empleados.*;
 public class menuPrincipalAdministrador extends javax.swing.JFrame {
 
     private Empleados empleado = new Empleados();
     private ventanaInventario inventario = new ventanaInventario();
     private VentanaProveedor proveedores = new VentanaProveedor();
+    private VentanaEmpleados empleados = new VentanaEmpleados();
 
     public menuPrincipalAdministrador(Empleados empleado) {
         this.empleado = empleado;
@@ -84,6 +86,11 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
         bttnEmpleados.setIconTextGap(0);
         bttnEmpleados.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         bttnEmpleados.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bttnEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnEmpleadosActionPerformed(evt);
+            }
+        });
         jPanel2.add(bttnEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 483, 118, -1));
 
         bttnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
@@ -172,6 +179,15 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
         pnlInterfaces.revalidate();
         pnlInterfaces.repaint();
     }//GEN-LAST:event_bttnProveedoresActionPerformed
+
+    private void bttnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEmpleadosActionPerformed
+        empleados.setSize(1180,610);
+        empleados.setLocation(0, 0);
+        pnlInterfaces.removeAll();
+        pnlInterfaces.add(empleados);
+        pnlInterfaces.revalidate();
+        pnlInterfaces.repaint();
+    }//GEN-LAST:event_bttnEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments
