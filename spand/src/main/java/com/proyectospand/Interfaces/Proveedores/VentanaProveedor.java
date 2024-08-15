@@ -1,19 +1,26 @@
 
 package com.proyectospand.Interfaces.Proveedores;
 import java.awt.*;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 /**
  *
  * @author omarr
  */
 public class VentanaProveedor extends javax.swing.JPanel {
+    RegistrarProveedorForm rprov = new RegistrarProveedorForm();
+    boolean modoAgregar = false;
+    boolean modoEditar = false;
+    
+    
 
     /**
      * Creates new form VentanaProveedor
      */
     public VentanaProveedor() {
         initComponents();
-        
-        RegistrarProveedorForm rprov = new RegistrarProveedorForm();
+       
         rprov.setSize(331,515);
         rprov.setLocation(0,0);
         pnlFormProv.removeAll();
@@ -41,24 +48,26 @@ public class VentanaProveedor extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         lblTitulo = new javax.swing.JLabel();
         pnlBotones = new javax.swing.JPanel();
-        btnAgregar = new javax.swing.JButton();
+        bttnAgregar = new javax.swing.JButton();
         lblAgregar = new javax.swing.JLabel();
-        btnEditar = new javax.swing.JButton();
+        bttnEditar = new javax.swing.JButton();
         lblEditar = new javax.swing.JLabel();
-        btnBuscar = new javax.swing.JButton();
+        bttnBuscar = new javax.swing.JButton();
         lblBuscar = new javax.swing.JLabel();
-        btnEliminar = new javax.swing.JButton();
+        bttnEliminar = new javax.swing.JButton();
         lblEliminar = new javax.swing.JLabel();
-        btnGuardar = new javax.swing.JButton();
+        bttnGuardar = new javax.swing.JButton();
         lblGuardar = new javax.swing.JLabel();
-        btnCancelar = new javax.swing.JButton();
+        bttnCancelar = new javax.swing.JButton();
         lblCancelar = new javax.swing.JLabel();
+        txtBusqueda = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1180, 610));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlOpcionesProveedor.setBackground(new java.awt.Color(230, 230, 250));
+        pnlOpcionesProveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlOpcionesProveedor.setPreferredSize(new java.awt.Dimension(346, 567));
 
         lblRegistrarProveedor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -90,7 +99,7 @@ public class VentanaProveedor extends javax.swing.JPanel {
                     .addComponent(pnlFormProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRegistrarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblInformacionProveedor))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         pnlOpcionesProveedorLayout.setVerticalGroup(
             pnlOpcionesProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,12 +110,13 @@ public class VentanaProveedor extends javax.swing.JPanel {
                 .addComponent(lblInformacionProveedor)
                 .addGap(18, 18, 18)
                 .addComponent(pnlFormProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         add(pnlOpcionesProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 352, 610));
 
         pnlVentanaProv.setBackground(new java.awt.Color(255, 255, 255));
+        pnlVentanaProv.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -129,73 +139,110 @@ public class VentanaProveedor extends javax.swing.JPanel {
         pnlBotones.setBackground(new java.awt.Color(255, 255, 255));
         pnlBotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Agregar_Proveedor1.png"))); // NOI18N
-        btnAgregar.setBorder(null);
-        pnlBotones.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 72, 60));
+        bttnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Agregar_Proveedor.png"))); // NOI18N
+        bttnAgregar.setBorder(null);
+        bttnAgregar.setBorderPainted(false);
+        bttnAgregar.setContentAreaFilled(false);
+        bttnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnAgregarActionPerformed(evt);
+            }
+        });
+        pnlBotones.add(bttnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 72, 60));
 
         lblAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblAgregar.setForeground(new java.awt.Color(102, 102, 102));
         lblAgregar.setText("Agregar");
-        pnlBotones.add(lblAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
+        pnlBotones.add(lblAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editar.png"))); // NOI18N
-        btnEditar.setBorder(null);
-        pnlBotones.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 72, 60));
+        bttnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editar.png"))); // NOI18N
+        bttnEditar.setBorder(null);
+        bttnEditar.setBorderPainted(false);
+        bttnEditar.setContentAreaFilled(false);
+        bttnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnEditarActionPerformed(evt);
+            }
+        });
+        pnlBotones.add(bttnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 72, 60));
 
         lblEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblEditar.setForeground(new java.awt.Color(102, 102, 102));
         lblEditar.setText("Editar");
-        pnlBotones.add(lblEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
+        pnlBotones.add(lblEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Buscar_Proveedor.png"))); // NOI18N
-        btnBuscar.setBorder(null);
-        pnlBotones.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 72, 60));
+        bttnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Buscar_Proveedor.png"))); // NOI18N
+        bttnBuscar.setBorder(null);
+        bttnBuscar.setBorderPainted(false);
+        bttnBuscar.setContentAreaFilled(false);
+        pnlBotones.add(bttnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 72, 60));
 
         lblBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblBuscar.setForeground(new java.awt.Color(102, 102, 102));
         lblBuscar.setText("Buscar");
-        pnlBotones.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
+        pnlBotones.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
 
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Eliminar_Proveedor.png"))); // NOI18N
-        btnEliminar.setBorder(null);
-        pnlBotones.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 72, 60));
+        bttnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Eliminar_Proveedor.png"))); // NOI18N
+        bttnEliminar.setBorder(null);
+        bttnEliminar.setBorderPainted(false);
+        bttnEliminar.setContentAreaFilled(false);
+        pnlBotones.add(bttnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 72, 60));
 
         lblEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblEliminar.setForeground(new java.awt.Color(102, 102, 102));
         lblEliminar.setText("Eliminar");
-        pnlBotones.add(lblEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
+        pnlBotones.add(lblEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guardar-el-archivo.png"))); // NOI18N
-        btnGuardar.setBorder(null);
-        pnlBotones.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 72, 60));
+        bttnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guardar-el-archivo.png"))); // NOI18N
+        bttnGuardar.setBorder(null);
+        bttnGuardar.setBorderPainted(false);
+        bttnGuardar.setContentAreaFilled(false);
+        bttnGuardar.setEnabled(false);
+        pnlBotones.add(bttnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 72, 60));
 
         lblGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblGuardar.setForeground(new java.awt.Color(102, 102, 102));
         lblGuardar.setText("Guardar");
-        pnlBotones.add(lblGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
+        lblGuardar.setEnabled(false);
+        pnlBotones.add(lblGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, -1, -1));
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cancelar.png"))); // NOI18N
-        btnCancelar.setBorder(null);
-        pnlBotones.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 72, 60));
+        bttnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cancelar.png"))); // NOI18N
+        bttnCancelar.setBorder(null);
+        bttnCancelar.setBorderPainted(false);
+        bttnCancelar.setContentAreaFilled(false);
+        bttnCancelar.setEnabled(false);
+        pnlBotones.add(bttnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 72, 60));
 
         lblCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCancelar.setForeground(new java.awt.Color(102, 102, 102));
         lblCancelar.setText("Cancelar");
-        pnlBotones.add(lblCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, -1, -1));
+        lblCancelar.setEnabled(false);
+        pnlBotones.add(lblCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 70, -1, -1));
+
+        txtBusqueda.setForeground(new java.awt.Color(153, 153, 153));
+        txtBusqueda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtBusqueda.setText("INGRESA EL NOMBRE DEL PRODUCTO A BUSCAR");
 
         javax.swing.GroupLayout pnlVentanaProvLayout = new javax.swing.GroupLayout(pnlVentanaProv);
         pnlVentanaProv.setLayout(pnlVentanaProvLayout);
         pnlVentanaProvLayout.setHorizontalGroup(
             pnlVentanaProvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(pnlVentanaProvLayout.createSequentialGroup()
-                .addGap(292, 292, 292)
-                .addComponent(lblTitulo)
-                .addContainerGap(306, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVentanaProvLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlVentanaProvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlVentanaProvLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlVentanaProvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlBotones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)))
+                    .addGroup(pnlVentanaProvLayout.createSequentialGroup()
+                        .addGap(292, 292, 292)
+                        .addComponent(lblTitulo)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(pnlVentanaProvLayout.createSequentialGroup()
+                .addGap(241, 241, 241)
+                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(231, Short.MAX_VALUE))
         );
         pnlVentanaProvLayout.setVerticalGroup(
             pnlVentanaProvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,23 +250,71 @@ public class VentanaProveedor extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         add(pnlVentanaProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 830, 610));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bttnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnAgregarActionPerformed
+        modoEditar = false;
+        lblRegistrarProveedor.setText("¡REGISTRA UN PROVEEDOR!");
+        if(modoAgregar){
+            habilitarCampos(false);
+            modoAgregar = false;
+            habilitarGuardarCancelar(false);
+        } else {
+            habilitarCampos(true);
+            modoAgregar = true;
+            habilitarGuardarCancelar(true);
+        }
+    }//GEN-LAST:event_bttnAgregarActionPerformed
+
+    private void bttnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEditarActionPerformed
+        modoAgregar = false;
+        lblRegistrarProveedor.setText("¡EDITA UN PROVEEDOR!");
+        if(modoEditar){
+            habilitarCampos(false);
+            modoEditar = false;
+            habilitarGuardarCancelar(false);
+         } else {
+            habilitarCampos(true);
+            modoEditar = true;
+            habilitarGuardarCancelar(true);
+        }
+        //Una vez que la query sea exitosa y guarde los cambios, los campos se deshabilitaran
+    }//GEN-LAST:event_bttnEditarActionPerformed
+
+    // Funciones
+    private void habilitarCampos(boolean habilitar){
+        Component[] componentes = rprov.getComponents();
+        for (Component componente : componentes){
+            if(componente instanceof JTextField){
+                componente.setEnabled(habilitar);
+            }
+        }
+    }// Fin de la función
+    
+    private void habilitarGuardarCancelar(boolean habilitar){
+        bttnGuardar.setEnabled(habilitar);
+        bttnCancelar.setEnabled(habilitar);
+        lblGuardar.setEnabled(habilitar);
+        lblCancelar.setEnabled(habilitar);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton bttnAgregar;
+    private javax.swing.JButton bttnBuscar;
+    private javax.swing.JButton bttnCancelar;
+    private javax.swing.JButton bttnEditar;
+    private javax.swing.JButton bttnEliminar;
+    private javax.swing.JButton bttnGuardar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAgregar;
@@ -235,5 +330,6 @@ public class VentanaProveedor extends javax.swing.JPanel {
     private javax.swing.JPanel pnlFormProv;
     private javax.swing.JPanel pnlOpcionesProveedor;
     private javax.swing.JPanel pnlVentanaProv;
+    private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
 }
