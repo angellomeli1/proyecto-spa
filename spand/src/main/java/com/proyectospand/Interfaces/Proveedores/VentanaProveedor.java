@@ -13,11 +13,6 @@ public class VentanaProveedor extends javax.swing.JPanel {
     boolean modoAgregar = false;
     boolean modoEditar = false;
     
-    
-
-    /**
-     * Creates new form VentanaProveedor
-     */
     public VentanaProveedor() {
         initComponents();
        
@@ -27,7 +22,6 @@ public class VentanaProveedor extends javax.swing.JPanel {
         pnlFormProv.add(rprov, BorderLayout.CENTER);
         pnlFormProv.revalidate();
         pnlFormProv.repaint();
-        //RegistrarProductoForm rp = new RegistrarProductoForm();
     }
 
     /**

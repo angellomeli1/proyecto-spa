@@ -4,11 +4,14 @@ import com.proyectospand.Entidades.Empleados;
 import com.proyectospand.Interfaces.confUI;
 import com.proyectospand.Interfaces.Inventario.*;
 import com.proyectospand.Interfaces.Proveedores.*;
+import com.proyectospand.Interfaces.Citas.*;
+
 public class menuPrincipalAdministrador extends javax.swing.JFrame {
 
     private Empleados empleado = new Empleados();
     private ventanaInventario inventario = new ventanaInventario();
     private VentanaProveedor proveedores = new VentanaProveedor();
+    private ventanaCitas citas = new ventanaCitas();
 
     public menuPrincipalAdministrador(Empleados empleado) {
         this.empleado = empleado;
@@ -152,7 +155,12 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCitasActionPerformed
-        // TODO add your handling code here:
+        citas.setSize(1180,610);
+        citas.setLocation(0, 0);
+        pnlInterfaces.removeAll();
+        pnlInterfaces.add(citas);
+        pnlInterfaces.revalidate();
+        pnlInterfaces.repaint();
     }//GEN-LAST:event_bttnCitasActionPerformed
 
     private void bttnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnInventarioActionPerformed
