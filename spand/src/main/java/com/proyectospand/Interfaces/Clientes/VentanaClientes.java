@@ -322,7 +322,7 @@ public class VentanaClientes extends javax.swing.JPanel {
             int idEmpleado = 1;  
         
             // Conectar a la base de datos y llamar al procedimiento almacenado AgregarCliente
-            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbspa", "root", "1613")) {
                 String sql = "{CALL AgregarCliente(?, ?, ?, ?, ?, ?, ?)}";
                 try (CallableStatement stmt = conn.prepareCall(sql)) {
                     stmt.setInt(1, idEmpleado);
