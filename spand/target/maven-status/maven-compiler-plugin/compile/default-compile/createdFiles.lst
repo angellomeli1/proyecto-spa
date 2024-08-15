@@ -1,7 +1,6 @@
 com\proyectospand\Entidades\Venta.class
 com\proyectospand\Interfaces\Login\Login$2.class
 com\proyectospand\Interfaces\Login\Login$1.class
-com\proyectospand\datos\Producto.class
 com\proyectospand\ConexionDB\conexionDB.class
 com\proyectospand\Entidades\Clientes.class
 com\proyectospand\ConexionDB\validarCredenciales.class

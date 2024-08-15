@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 public class ventanaInventario extends javax.swing.JPanel {
 
@@ -240,7 +241,7 @@ public class ventanaInventario extends javax.swing.JPanel {
                         .addGap(292, 292, 292)
                         .addComponent(jLabel1))
                     .addGroup(apartadoProductosLayout.createSequentialGroup()
-                        .addGap(241, 241, 241)
+                        .addGap(238, 238, 238)
                         .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

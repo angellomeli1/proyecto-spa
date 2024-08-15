@@ -109,7 +109,6 @@ public class RegistrarProductoForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNombreProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNombreProducto)
                     .addComponent(lblPrecioProducto)
                     .addComponent(txtPrecioProducto)
                     .addComponent(lblDescProducto)
@@ -119,7 +118,8 @@ public class RegistrarProductoForm extends javax.swing.JPanel {
                     .addComponent(lblProveedor)
                     .addComponent(jcombProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblGananciaProducto)
-                    .addComponent(jcomGananciaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcomGananciaProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNombreProducto))
                 .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
