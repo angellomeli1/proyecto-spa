@@ -30,8 +30,10 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
 
         lblFechaContratoEmp = new javax.swing.JLabel();
         txtFechaContratoEmp = new javax.swing.JTextField();
+        lblTelefonoEmp = new javax.swing.JLabel();
+        txtTelefonoEmp = new javax.swing.JTextField();
         lblClaveEmp = new javax.swing.JLabel();
-        txtClaveEmp = new javax.swing.JTextField();
+        txtPassClaveEmp = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(230, 230, 250));
 
@@ -56,24 +58,44 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
             }
         });
 
+        lblTelefonoEmp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTelefonoEmp.setForeground(new java.awt.Color(102, 102, 102));
+        lblTelefonoEmp.setText("Teléfono*");
+
+        txtTelefonoEmp.setForeground(new java.awt.Color(153, 153, 153));
+        txtTelefonoEmp.setText("Ingresa el teléfono del empleado");
+        txtTelefonoEmp.setEnabled(false);
+        txtTelefonoEmp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoEmpFocusGained(evt);
+            }
+        });
+        txtTelefonoEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtTelefonoEmpMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtTelefonoEmpMousePressed(evt);
+            }
+        });
+
         lblClaveEmp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblClaveEmp.setForeground(new java.awt.Color(102, 102, 102));
         lblClaveEmp.setText("Clave de ingreso*");
 
-        txtClaveEmp.setForeground(new java.awt.Color(153, 153, 153));
-        txtClaveEmp.setText("Ingresa la clave del empleado");
-        txtClaveEmp.setEnabled(false);
-        txtClaveEmp.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtPassClaveEmp.setText("***************");
+        txtPassClaveEmp.setEnabled(false);
+        txtPassClaveEmp.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtClaveEmpFocusGained(evt);
+                txtPassClaveEmpFocusGained(evt);
             }
         });
-        txtClaveEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtPassClaveEmp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtClaveEmpMouseExited(evt);
+                txtPassClaveEmpMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtClaveEmpMousePressed(evt);
+                txtPassClaveEmpMousePressed(evt);
             }
         });
 
@@ -83,11 +105,13 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFechaContratoEmp)
-                    .addComponent(txtFechaContratoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblClaveEmp)
-                    .addComponent(txtClaveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtPassClaveEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(lblFechaContratoEmp, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFechaContratoEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(lblClaveEmp, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTelefonoEmp, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTelefonoEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,10 +122,14 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFechaContratoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTelefonoEmp)
+                .addGap(4, 4, 4)
+                .addComponent(txtTelefonoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblClaveEmp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtClaveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(310, Short.MAX_VALUE))
+                .addComponent(txtPassClaveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(244, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -126,32 +154,55 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtFechaContratoEmpMouseExited
 
-    private void txtClaveEmpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtClaveEmpFocusGained
-        if (txtClaveEmp.getText().equals("Ingresa la clave del empleado")){
-            txtClaveEmp.setText("");
-            txtClaveEmp.setForeground(Color.black);
+    private void txtTelefonoEmpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoEmpFocusGained
+        if (txtTelefonoEmp.getText().equals("Ingresa el teléfono del empleado")){
+            txtTelefonoEmp.setText("");
+            txtTelefonoEmp.setForeground(Color.black);
         }
-    }//GEN-LAST:event_txtClaveEmpFocusGained
+    }//GEN-LAST:event_txtTelefonoEmpFocusGained
 
-    private void txtClaveEmpMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtClaveEmpMousePressed
-        if (txtClaveEmp.getText().equals("Ingresa la clave del empleado")){
-            txtClaveEmp.setText("");
-            txtClaveEmp.setForeground(Color.black);
+    private void txtTelefonoEmpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoEmpMouseExited
+        if (txtTelefonoEmp.getText().isEmpty()){
+            txtTelefonoEmp.setText("Ingresa el teléfono del empleado");
+            txtTelefonoEmp.setForeground(Color.GRAY);
         }
-    }//GEN-LAST:event_txtClaveEmpMousePressed
+    }//GEN-LAST:event_txtTelefonoEmpMouseExited
 
-    private void txtClaveEmpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtClaveEmpMouseExited
-        if (txtClaveEmp.getText().isEmpty()){
-            txtClaveEmp.setText("Ingresa la clave del empleado");
-            txtClaveEmp.setForeground(Color.GRAY);
+    private void txtTelefonoEmpMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoEmpMousePressed
+        if (txtTelefonoEmp.getText().equals("Ingresa el teléfono del empleado")){
+            txtTelefonoEmp.setText("");
+            txtTelefonoEmp.setForeground(Color.black);
         }
-    }//GEN-LAST:event_txtClaveEmpMouseExited
+    }//GEN-LAST:event_txtTelefonoEmpMousePressed
+
+    private void txtPassClaveEmpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassClaveEmpFocusGained
+        if (String.valueOf(txtPassClaveEmp.getPassword()).equals("***************")){
+            txtPassClaveEmp.setText("");
+            txtPassClaveEmp.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtPassClaveEmpFocusGained
+
+    private void txtPassClaveEmpMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassClaveEmpMousePressed
+        if (String.valueOf(txtPassClaveEmp.getPassword()).equals("***************")){
+            txtPassClaveEmp.setText("");
+            txtPassClaveEmp.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtPassClaveEmpMousePressed
+
+    private void txtPassClaveEmpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassClaveEmpMouseExited
+        if (String.valueOf(txtPassClaveEmp.getPassword()).isEmpty()){
+            txtPassClaveEmp.setText("***************");
+            txtPassClaveEmp.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtPassClaveEmpMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblClaveEmp;
     private javax.swing.JLabel lblFechaContratoEmp;
-    private javax.swing.JTextField txtClaveEmp;
+    private javax.swing.JLabel lblTelefonoEmp;
     private javax.swing.JTextField txtFechaContratoEmp;
+    private javax.swing.JPasswordField txtPassClaveEmp;
+    private javax.swing.JTextField txtTelefonoEmp;
     // End of variables declaration//GEN-END:variables
 }

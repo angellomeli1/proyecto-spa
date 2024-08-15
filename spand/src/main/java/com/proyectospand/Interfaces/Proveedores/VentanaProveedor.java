@@ -221,7 +221,7 @@ public class VentanaProveedor extends javax.swing.JPanel {
 
         txtBusqueda.setForeground(new java.awt.Color(153, 153, 153));
         txtBusqueda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtBusqueda.setText("INGRESA EL NOMBRE DEL PRODUCTO A BUSCAR");
+        txtBusqueda.setText("INGRESA EL NOMBRE DEL PROVEEDOR A BUSCAR");
 
         javax.swing.GroupLayout pnlVentanaProvLayout = new javax.swing.GroupLayout(pnlVentanaProv);
         pnlVentanaProv.setLayout(pnlVentanaProvLayout);
