@@ -31,7 +31,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="lblNombreProducto" max="32767" attributes="0"/>
-                  <Component id="txtNombreProducto" max="32767" attributes="0"/>
                   <Component id="lblPrecioProducto" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPrecioProducto" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblDescProducto" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -41,7 +40,8 @@
                   <Component id="lblProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jcombProveedor" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblGananciaProducto" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jcomGananciaProducto" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+                  <Component id="jcomGananciaProducto" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtNombreProducto" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="132" max="32767" attributes="0"/>
           </Group>
