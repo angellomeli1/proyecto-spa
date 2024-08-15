@@ -21,13 +21,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="txtPassClaveEmp" pref="202" max="32767" attributes="0"/>
                   <Component id="lblFechaContratoEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFechaContratoEmp" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+                  <Component id="txtFechaContratoEmp" alignment="1" pref="202" max="32767" attributes="0"/>
                   <Component id="lblClaveEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtClaveEmp" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+                  <Component id="lblTelefonoEmp" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTelefonoEmp" alignment="1" pref="202" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="130" max="32767" attributes="0"/>
           </Group>
@@ -41,10 +43,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="txtFechaContratoEmp" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="lblTelefonoEmp" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+              <Component id="txtTelefonoEmp" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="lblClaveEmp" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtClaveEmp" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace pref="310" max="32767" attributes="0"/>
+              <Component id="txtPassClaveEmp" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace pref="244" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,6 +81,31 @@
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtFechaContratoEmpMousePressed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JLabel" name="lblTelefonoEmp">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Tel&#xe9;fono*"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtTelefonoEmp">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Ingresa el tel&#xe9;fono del empleado"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTelefonoEmpFocusGained"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTelefonoEmpMouseExited"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTelefonoEmpMousePressed"/>
+      </Events>
+    </Component>
     <Component class="javax.swing.JLabel" name="lblClaveEmp">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -86,18 +117,15 @@
         <Property name="text" type="java.lang.String" value="Clave de ingreso*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtClaveEmp">
+    <Component class="javax.swing.JPasswordField" name="txtPassClaveEmp">
       <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="99" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Ingresa la clave del empleado"/>
+        <Property name="text" type="java.lang.String" value="***************"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtClaveEmpFocusGained"/>
-        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtClaveEmpMouseExited"/>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtClaveEmpMousePressed"/>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtPassClaveEmpFocusGained"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPassClaveEmpMouseExited"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtPassClaveEmpMousePressed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -7,6 +7,7 @@ import com.proyectospand.Interfaces.Proveedores.*;
 import com.proyectospand.Interfaces.Citas.*;
 
 import com.proyectospand.Interfaces.Empleados.*;
+import com.proyectospand.Interfaces.Clientes.*;
 public class menuPrincipalAdministrador extends javax.swing.JFrame {
 
     private Empleados empleado = new Empleados();
@@ -14,6 +15,7 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
     private VentanaProveedor proveedores = new VentanaProveedor();
     private ventanaCitas citas = new ventanaCitas();
     private VentanaEmpleados empleados = new VentanaEmpleados();
+    private VentanaClientes clientes = new VentanaClientes();
 
     public menuPrincipalAdministrador(Empleados empleado) {
         this.empleado = empleado;
@@ -81,6 +83,11 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
         bttnClientes.setIconTextGap(0);
         bttnClientes.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         bttnClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bttnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnClientesActionPerformed(evt);
+            }
+        });
         jPanel2.add(bttnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 47, 118, -1));
 
         bttnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
@@ -196,6 +203,15 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
         pnlInterfaces.revalidate();
         pnlInterfaces.repaint();
     }//GEN-LAST:event_bttnEmpleadosActionPerformed
+
+    private void bttnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnClientesActionPerformed
+        clientes.setSize(1180,610);
+        clientes.setLocation(0, 0);
+        pnlInterfaces.removeAll();
+        pnlInterfaces.add(clientes);
+        pnlInterfaces.revalidate();
+        pnlInterfaces.repaint();
+    }//GEN-LAST:event_bttnClientesActionPerformed
 
     /**
      * @param args the command line arguments

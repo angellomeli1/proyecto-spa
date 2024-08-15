@@ -3,7 +3,6 @@ com\proyectospand\ConexionDB\conexionDB.class
 com\proyectospand\Entidades\Clientes.class
 com\proyectospand\Interfaces\Login\Login$4.class
 com\proyectospand\Entidades\Producto.class
-com\proyectospand\Interfaces\Clientes\ClientesInterfaz.class
 com\proyectospand\Entidades\Empleados.class
 com\proyectospand\Interfaces\Login\Login$3.class
 com\proyectospand\Interfaces\Login\Login$2.class
