@@ -26,164 +26,156 @@ public class RegistrarProductoForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        lblNombreProducto = new javax.swing.JLabel();
+        txtNombreProducto = new javax.swing.JTextField();
+        lblPrecioProducto = new javax.swing.JLabel();
+        txtPrecioProducto = new javax.swing.JTextField();
+        lblDescProducto = new javax.swing.JLabel();
+        txtDescProducto = new javax.swing.JTextField();
+        lblCantidadProducto = new javax.swing.JLabel();
+        txtCantidadProducto = new javax.swing.JTextField();
+        lblProveedor = new javax.swing.JLabel();
+        jcombProveedor = new javax.swing.JComboBox<>();
+        lblGananciaProducto = new javax.swing.JLabel();
+        jcomGananciaProducto = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(230, 230, 250));
         setPreferredSize(new java.awt.Dimension(340, 529));
 
-        jPanel1.setBackground(new java.awt.Color(230, 230, 250));
+        lblNombreProducto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNombreProducto.setForeground(new java.awt.Color(102, 102, 102));
+        lblNombreProducto.setText("Nombre del producto*");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Nombre del producto*");
+        txtNombreProducto.setForeground(new java.awt.Color(153, 153, 153));
+        txtNombreProducto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNombreProducto.setText("Ingresa el nombre del producto");
+        txtNombreProducto.setEnabled(false);
 
-        jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("Ingresa el nombre del producto");
+        lblPrecioProducto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPrecioProducto.setForeground(new java.awt.Color(102, 102, 102));
+        lblPrecioProducto.setText("Precio del producto*");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("Precio del producto*");
+        txtPrecioProducto.setForeground(new java.awt.Color(153, 153, 153));
+        txtPrecioProducto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPrecioProducto.setText("Ingresa el precio del producto");
+        txtPrecioProducto.setEnabled(false);
 
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("Ingresa el precio del producto");
+        lblDescProducto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDescProducto.setForeground(new java.awt.Color(102, 102, 102));
+        lblDescProducto.setText("Descripción del producto*");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel3.setText("Descripción del producto*");
+        txtDescProducto.setForeground(new java.awt.Color(153, 153, 153));
+        txtDescProducto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDescProducto.setText("Ingresa la descripción del producto");
+        txtDescProducto.setEnabled(false);
 
-        jTextField3.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.setText("Ingresa la descripción del producto");
+        lblCantidadProducto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblCantidadProducto.setForeground(new java.awt.Color(102, 102, 102));
+        lblCantidadProducto.setText("Cantidad de producto*");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Cantidad de producto*");
+        txtCantidadProducto.setForeground(new java.awt.Color(153, 153, 153));
+        txtCantidadProducto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCantidadProducto.setText("Ingresa la cantidad de producto");
+        txtCantidadProducto.setEnabled(false);
 
-        jTextField4.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField4.setText("Ingresa la cantidad de producto");
+        lblProveedor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblProveedor.setForeground(new java.awt.Color(102, 102, 102));
+        lblProveedor.setText("Proveedor del producto*");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Proveedor del producto*");
-
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jcombProveedor.setEnabled(false);
+        jcombProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jcombProveedorActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Ganancia del producto (%)*");
+        lblGananciaProducto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblGananciaProducto.setForeground(new java.awt.Color(102, 102, 102));
+        lblGananciaProducto.setText("Ganancia del producto (%)*");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15", "20" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        jcomGananciaProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "15", "20" }));
+        jcomGananciaProducto.setEnabled(false);
+        jcomGananciaProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                jcomGananciaProductoActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4)
-                    .addComponent(jLabel5)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(132, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblNombreProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNombreProducto)
+                    .addComponent(lblPrecioProducto)
+                    .addComponent(txtPrecioProducto)
+                    .addComponent(lblDescProducto)
+                    .addComponent(txtDescProducto)
+                    .addComponent(lblCantidadProducto)
+                    .addComponent(txtCantidadProducto)
+                    .addComponent(lblProveedor)
+                    .addComponent(jcombProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblGananciaProducto)
+                    .addComponent(jcomGananciaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(lblNombreProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblPrecioProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPrecioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblDescProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtDescProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblCantidadProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblProveedor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcombProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblGananciaProducto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcomGananciaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jcombProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcombProveedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jcombProveedorActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void jcomGananciaProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomGananciaProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_jcomGananciaProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JComboBox<String> jcomGananciaProducto;
+    private javax.swing.JComboBox<String> jcombProveedor;
+    private javax.swing.JLabel lblCantidadProducto;
+    private javax.swing.JLabel lblDescProducto;
+    private javax.swing.JLabel lblGananciaProducto;
+    private javax.swing.JLabel lblNombreProducto;
+    private javax.swing.JLabel lblPrecioProducto;
+    private javax.swing.JLabel lblProveedor;
+    private javax.swing.JTextField txtCantidadProducto;
+    private javax.swing.JTextField txtDescProducto;
+    private javax.swing.JTextField txtNombreProducto;
+    private javax.swing.JTextField txtPrecioProducto;
     // End of variables declaration//GEN-END:variables
 }

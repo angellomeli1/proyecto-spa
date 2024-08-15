@@ -1,6 +1,7 @@
 
 package com.proyectospand.Interfaces.Login;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -10,7 +11,7 @@ import com.proyectospand.Interfaces.confUI;
 import com.proyectospand.ConexionDB.*;
 import com.proyectospand.Entidades.Empleados;
 
-import com.proyectospand.Interfaces.ventanaPrincipal.*;;;
+import com.proyectospand.Interfaces.ventanaPrincipal.*;
 
 public class Login extends javax.swing.JFrame {
 
@@ -74,9 +75,19 @@ public class Login extends javax.swing.JFrame {
         txtUsuario.setForeground(java.awt.Color.lightGray);
         txtUsuario.setText("Ingresar el nombre del usuario");
         txtUsuario.setBorder(null);
+        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusGained(evt);
+            }
+        });
         txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtUsuarioMousePressed(evt);
+            }
+        });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
             }
         });
 
@@ -105,9 +116,19 @@ public class Login extends javax.swing.JFrame {
         pswContrasena.setForeground(java.awt.Color.lightGray);
         pswContrasena.setText("**********");
         pswContrasena.setBorder(null);
+        pswContrasena.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pswContrasenaFocusGained(evt);
+            }
+        });
         pswContrasena.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pswContrasenaMousePressed(evt);
+            }
+        });
+        pswContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pswContrasenaKeyPressed(evt);
             }
         });
 
@@ -257,6 +278,40 @@ public class Login extends javax.swing.JFrame {
             txtUsuario.setForeground(Color.gray);
         }
     }//GEN-LAST:event_pswContrasenaMousePressed
+
+    private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
+        if(txtUsuario.getText().equals("Ingresar el nombre del usuario")){
+            txtUsuario.setText("");
+            txtUsuario.setForeground(Color.black);
+        }
+        if(String.valueOf(pswContrasena.getPassword()).isEmpty()){
+            pswContrasena.setText("**********");
+            pswContrasena.setForeground(Color.gray); 
+        }
+    }//GEN-LAST:event_txtUsuarioFocusGained
+
+    private void pswContrasenaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pswContrasenaFocusGained
+        if(String.valueOf(pswContrasena.getPassword()).equals("**********")){
+            pswContrasena.setText("");
+            pswContrasena.setForeground(Color.black);
+        }
+        if(txtUsuario.getText().isEmpty()){
+            txtUsuario.setText("Ingresar el nombre del usuario");
+            txtUsuario.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_pswContrasenaFocusGained
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            bttnIniciarSesionActionPerformed(null);
+        }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void pswContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pswContrasenaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            bttnIniciarSesionActionPerformed(null); // Llama al método de inicio de sesión
+        }
+    }//GEN-LAST:event_pswContrasenaKeyPressed
 
     /**
      * @param args the command line arguments
