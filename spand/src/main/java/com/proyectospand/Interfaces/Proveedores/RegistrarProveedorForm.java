@@ -1,5 +1,7 @@
 package com.proyectospand.Interfaces.Proveedores;
 
+import java.awt.Color;
+
 /**
  *
  * @author omarr
@@ -31,7 +33,7 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
         lblTelefono = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JLabel();
-        txtTelefono1 = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(230, 230, 250));
 
@@ -42,6 +44,19 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
         txtNombreProv.setForeground(new java.awt.Color(153, 153, 153));
         txtNombreProv.setText("Ingresa el nombre del proveedor");
         txtNombreProv.setEnabled(false);
+        txtNombreProv.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNombreProvFocusGained(evt);
+            }
+        });
+        txtNombreProv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtNombreProvMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtNombreProvMousePressed(evt);
+            }
+        });
 
         lblCalle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCalle.setForeground(new java.awt.Color(102, 102, 102));
@@ -50,6 +65,19 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
         txtCalle.setForeground(new java.awt.Color(153, 153, 153));
         txtCalle.setText("Ingresa la calle");
         txtCalle.setEnabled(false);
+        txtCalle.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCalleFocusGained(evt);
+            }
+        });
+        txtCalle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtCalleMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtCalleMousePressed(evt);
+            }
+        });
 
         lblColonia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblColonia.setForeground(new java.awt.Color(102, 102, 102));
@@ -58,6 +86,19 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
         txtColonia.setForeground(new java.awt.Color(153, 153, 153));
         txtColonia.setText("Ingresa la colonia");
         txtColonia.setEnabled(false);
+        txtColonia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtColoniaFocusGained(evt);
+            }
+        });
+        txtColonia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtColoniaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtColoniaMousePressed(evt);
+            }
+        });
 
         lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(102, 102, 102));
@@ -66,14 +107,40 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
         txtTelefono.setForeground(new java.awt.Color(153, 153, 153));
         txtTelefono.setText("Ingresa el teléfono");
         txtTelefono.setEnabled(false);
+        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoFocusGained(evt);
+            }
+        });
+        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtTelefonoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtTelefonoMousePressed(evt);
+            }
+        });
 
         lblCorreo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblCorreo.setForeground(new java.awt.Color(102, 102, 102));
         lblCorreo.setText("Correo*");
 
-        txtTelefono1.setForeground(new java.awt.Color(153, 153, 153));
-        txtTelefono1.setText("Ingresa el correo");
-        txtTelefono1.setEnabled(false);
+        txtCorreo.setForeground(new java.awt.Color(153, 153, 153));
+        txtCorreo.setText("Ingresa el correo");
+        txtCorreo.setEnabled(false);
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusGained(evt);
+            }
+        });
+        txtCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtCorreoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtCorreoMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -96,7 +163,7 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
                                     .addComponent(lblColonia)))
                             .addComponent(lblTelefono)))
                     .addComponent(lblCorreo)
-                    .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -121,10 +188,115 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(lblCorreo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(97, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNombreProvFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreProvFocusGained
+       if (txtNombreProv.getText().equals("Ingresa el nombre del proveedor")){
+           txtNombreProv.setText("");
+           txtNombreProv.setForeground(Color.black);
+       }
+    }//GEN-LAST:event_txtNombreProvFocusGained
+
+    private void txtNombreProvMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreProvMousePressed
+        if (txtNombreProv.getText().equals("Ingresa el nombre del proveedor")){
+           txtNombreProv.setText("");
+           txtNombreProv.setForeground(Color.black);
+       }
+    }//GEN-LAST:event_txtNombreProvMousePressed
+
+    private void txtNombreProvMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreProvMouseExited
+        if (txtNombreProv.getText().isEmpty()){
+           txtNombreProv.setText("Ingresa el nombre del proveedor");
+           txtNombreProv.setForeground(Color.GRAY);
+       }
+    }//GEN-LAST:event_txtNombreProvMouseExited
+
+    private void txtCalleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCalleFocusGained
+        if (txtCalle.getText().equals("Ingresa la calle")){
+            txtCalle.setText("");
+            txtCalle.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtCalleFocusGained
+
+    private void txtCalleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCalleMousePressed
+        if (txtCalle.getText().equals("Ingresa la calle")){
+            txtCalle.setText("");
+            txtCalle.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtCalleMousePressed
+
+    private void txtCalleMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCalleMouseExited
+        if (txtCalle.getText().isEmpty()){
+            txtCalle.setText("Ingresa la calle");
+            txtCalle.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtCalleMouseExited
+
+    private void txtColoniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtColoniaFocusGained
+        if (txtColonia.getText().equals("Ingresa la colonia")){
+            txtColonia.setText("");
+            txtColonia.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtColoniaFocusGained
+
+    private void txtColoniaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtColoniaMousePressed
+        if (txtColonia.getText().equals("Ingresa la colonia")){
+            txtColonia.setText("");
+            txtColonia.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtColoniaMousePressed
+
+    private void txtColoniaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtColoniaMouseExited
+        if (txtColonia.getText().isEmpty()){
+            txtColonia.setText("Ingresa la colonia");
+            txtColonia.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtColoniaMouseExited
+
+    private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
+        if (txtTelefono.getText().equals("Ingresa el teléfono")){
+            txtTelefono.setText("");
+            txtTelefono.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtTelefonoFocusGained
+
+    private void txtTelefonoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMousePressed
+        if (txtTelefono.getText().equals("Ingresa el teléfono")){
+            txtTelefono.setText("");
+            txtTelefono.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtTelefonoMousePressed
+
+    private void txtTelefonoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseExited
+        if (txtTelefono.getText().isEmpty()){
+            txtTelefono.setText("Ingresa el teléfono");
+            txtTelefono.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtTelefonoMouseExited
+
+    private void txtCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusGained
+        if (txtCorreo.getText().equals("Ingresa el correo")){
+            txtCorreo.setText("");
+            txtCorreo.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtCorreoFocusGained
+
+    private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
+        if (txtCorreo.getText().equals("Ingresa el correo")){
+            txtCorreo.setText("");
+            txtCorreo.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtCorreoMousePressed
+
+    private void txtCorreoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMouseExited
+        if (txtCorreo.getText().isEmpty()){
+            txtCorreo.setText("Ingresa el correo");
+            txtCorreo.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtCorreoMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -135,8 +307,8 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JTextField txtCalle;
     private javax.swing.JTextField txtColonia;
+    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombreProv;
     private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtTelefono1;
     // End of variables declaration//GEN-END:variables
 }
