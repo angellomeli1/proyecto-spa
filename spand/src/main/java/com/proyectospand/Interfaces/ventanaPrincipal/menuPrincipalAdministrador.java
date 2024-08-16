@@ -173,6 +173,7 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_bttnProveedoresActionPerformed
 
     private void bttnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEmpleadosActionPerformed
+        // Se llama a el objeto de la ventana empleados
         empleados.setSize(1180,610);
         empleados.setLocation(0, 0);
         pnlInterfaces.removeAll();
