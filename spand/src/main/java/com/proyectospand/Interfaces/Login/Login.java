@@ -234,16 +234,16 @@ public class Login extends javax.swing.JFrame {
         
         // Redirige al usuario según su rol
         switch (rol) {
-            case "Administrador":
+            case "administrador":
                 // Cargar la ventana principal del administrador
                 menuPrincipalAdministrador adminVentana = new menuPrincipalAdministrador(empleado);
                 adminVentana.setVisible(true);
                 break;
-            case "Recepcionista":
+            case "recepcionista":
                 menuPrincipalRecepcionista recepVentana = new menuPrincipalRecepcionista(empleado);
                 recepVentana.setVisible(true);
                 break;
-            case "Inventarista":
+            case "inventarista":
                 menuPrincipalInventarista inventVentana = new menuPrincipalInventarista(empleado);
                 inventVentana.setVisible(true);
                 break;
