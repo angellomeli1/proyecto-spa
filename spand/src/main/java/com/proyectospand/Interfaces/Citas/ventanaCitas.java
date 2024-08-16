@@ -6,6 +6,13 @@ package com.proyectospand.Interfaces.Citas;
 
 import java.awt.Component;
 import javax.swing.JTextField;
+import java.awt.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -47,6 +54,7 @@ public class ventanaCitas extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+
         jPanel1 = new javax.swing.JPanel();
         lblRegistrarCita = new javax.swing.JLabel();
         pnlFormCita = new javax.swing.JPanel();
@@ -54,6 +62,8 @@ public class ventanaCitas extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         lblAviso = new javax.swing.JLabel();
         pnlTablas = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         bttnEliminar = new javax.swing.JButton();
@@ -69,6 +79,7 @@ public class ventanaCitas extends javax.swing.JPanel {
         lblGuardar = new javax.swing.JLabel();
         lblCancelar = new javax.swing.JLabel();
         bttnSeleccionar = new javax.swing.JButton();
+        cargarDatosCitas();
 
         setBackground(new java.awt.Color(230, 230, 250));
         setPreferredSize(new java.awt.Dimension(1180, 610));
@@ -128,15 +139,28 @@ public class ventanaCitas extends javax.swing.JPanel {
         lblAviso.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblAviso.setText("¡TODAS LAS CITAS!");
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID Cita", "ID Cliente", "ID Empleado", "Fecha", "Descripción", "Costo"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable2);
+
         javax.swing.GroupLayout pnlTablasLayout = new javax.swing.GroupLayout(pnlTablas);
         pnlTablas.setLayout(pnlTablasLayout);
         pnlTablasLayout.setHorizontalGroup(
             pnlTablasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         pnlTablasLayout.setVerticalGroup(
             pnlTablasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
         );
 
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
@@ -446,6 +470,33 @@ public class ventanaCitas extends javax.swing.JPanel {
         lblGuardar.setEnabled(habilitar);
         lblCancelar.setEnabled(habilitar);
     }
+
+    private void cargarDatosCitas() {
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        model.setRowCount(0); // Limpiar la tabla
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
+            String sql = "SELECT idCitas, Cliente_idCliente, Empleado_idEmpleado, fechaCita, descripcion, costo  FROM citas";
+            try (PreparedStatement stmt = conn.prepareStatement(sql);
+                    ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+                    Object[] row = new Object[6];
+                    row[0] = rs.getString("idCitas");
+                    row[1] = rs.getString("Cliente_idCliente");
+                    row[2] = rs.getString("Empleado_idEmpleado");
+                    row[3] = rs.getString("fechaCita");
+                    row[4] = rs.getString("descripcion");
+                    row[5] = rs.getString("costo");
+                    model.addRow(row); // Agregar fila al modelo
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al cargar los productos: " + ex.getMessage());
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnAgregar;
     private javax.swing.JButton bttnBuscar;
@@ -458,6 +509,8 @@ public class ventanaCitas extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAgregar;
     private javax.swing.JLabel lblAviso;

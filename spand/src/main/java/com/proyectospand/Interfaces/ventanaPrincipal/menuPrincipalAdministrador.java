@@ -32,7 +32,6 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
         pnlFondo = new javax.swing.JPanel();
         pnlInterfaces = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        bttnCitas = new javax.swing.JButton();
         bttnClientes = new javax.swing.JButton();
         bttnEmpleados = new javax.swing.JButton();
         bttnInventario = new javax.swing.JButton();
@@ -64,19 +63,6 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(230, 230, 250));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bttnCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
-        bttnCitas.setText("CITAS");
-        bttnCitas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bttnCitas.setIconTextGap(0);
-        bttnCitas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        bttnCitas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bttnCitas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttnCitasActionPerformed(evt);
-            }
-        });
-        jPanel2.add(bttnCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 159, 118, -1));
-
         bttnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
         bttnClientes.setText("CLIENTES");
         bttnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -88,7 +74,7 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
                 bttnClientesActionPerformed(evt);
             }
         });
-        jPanel2.add(bttnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 47, 118, -1));
+        jPanel2.add(bttnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 50, 118, -1));
 
         bttnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
         bttnEmpleados.setText("EMPLEADOS");
@@ -101,7 +87,7 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
                 bttnEmpleadosActionPerformed(evt);
             }
         });
-        jPanel2.add(bttnEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 483, 118, -1));
+        jPanel2.add(bttnEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 425, 118, -1));
 
         bttnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
         bttnInventario.setText("INVENTARIO");
@@ -114,7 +100,7 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
                 bttnInventarioActionPerformed(evt);
             }
         });
-        jPanel2.add(bttnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 267, 118, -1));
+        jPanel2.add(bttnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 175, 118, -1));
 
         bttnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
         bttnProveedores.setText("PROVEEDORES");
@@ -127,7 +113,7 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
                 bttnProveedoresActionPerformed(evt);
             }
         });
-        jPanel2.add(bttnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 375, 118, -1));
+        jPanel2.add(bttnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 300, 118, -1));
 
         pnlFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, 640));
 
@@ -168,15 +154,6 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bttnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCitasActionPerformed
-        citas.setSize(1180,610);
-        citas.setLocation(0, 0);
-        pnlInterfaces.removeAll();
-        pnlInterfaces.add(citas);
-        pnlInterfaces.revalidate();
-        pnlInterfaces.repaint();
-    }//GEN-LAST:event_bttnCitasActionPerformed
-
     private void bttnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnInventarioActionPerformed
         inventario.setSize(1180,610);
         inventario.setLocation(0, 0);
@@ -196,6 +173,7 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_bttnProveedoresActionPerformed
 
     private void bttnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEmpleadosActionPerformed
+        // Se llama a el objeto de la ventana empleados
         empleados.setSize(1180,610);
         empleados.setLocation(0, 0);
         pnlInterfaces.removeAll();
@@ -250,7 +228,6 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bttnCitas;
     private javax.swing.JButton bttnClientes;
     private javax.swing.JButton bttnEmpleados;
     private javax.swing.JButton bttnInventario;

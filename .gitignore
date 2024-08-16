@@ -1,2 +1,11 @@
-# Ignorar todos los archivos .class en el repositorio
+# Ignorar todos los archivos .class generados por Java
 *.class
+
+# Ignorar todas las carpetas 'target' o 'bin' donde se suelen generar archivos compilados
+/target/
+/bin/
+
+# Otras configuraciones adicionales que puedas necesitar
+*.log
+*.tmp
+*.swp

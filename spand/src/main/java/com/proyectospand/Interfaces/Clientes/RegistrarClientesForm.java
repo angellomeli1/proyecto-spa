@@ -1,6 +1,7 @@
 package com.proyectospand.Interfaces.Clientes;
 
 import java.awt.Color;
+import javax.swing.JTextField;
 
 /**
  *
@@ -13,6 +14,8 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
      */
     public RegistrarClientesForm() {
         initComponents();
+        lblTelefonoCliente.setVisible(false);
+        txtTelefonoCliente.setVisible(false);
     }
 
     /**
@@ -322,80 +325,80 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtColoniaClienteMousePressed
 
-    private void txtTelefonoClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoClienteFocusGained
-        if (txtTelefonoCliente.getText().equals("Ingresa el teléfono del cliente")){ 
-            txtTelefonoCliente.setText("");
-            txtTelefonoCliente.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_txtTelefonoClienteFocusGained
-
-    private void txtTelefonoClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoClienteMouseExited
-        if (txtTelefonoCliente.getText().isEmpty()){ 
-            txtTelefonoCliente.setText("Ingresa el teléfono del cliente");
-            txtTelefonoCliente.setForeground(Color.GRAY);
-        }
-    }//GEN-LAST:event_txtTelefonoClienteMouseExited
-
     private void txtTelefonoClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoClienteMousePressed
-        if (txtTelefonoCliente.getText().equals("Ingresa el teléfono del cliente")){ 
+        if (txtTelefonoCliente.getText().equals("Ingresa el teléfono del cliente")){
             txtTelefonoCliente.setText("");
             txtTelefonoCliente.setForeground(Color.black);
         }
     }//GEN-LAST:event_txtTelefonoClienteMousePressed
 
+    private void txtTelefonoClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoClienteMouseExited
+        if (txtTelefonoCliente.getText().isEmpty()){
+            txtTelefonoCliente.setText("Ingresa el teléfono del cliente");
+            txtTelefonoCliente.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtTelefonoClienteMouseExited
+
+    private void txtTelefonoClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoClienteFocusGained
+        if (txtTelefonoCliente.getText().equals("Ingresa el teléfono del cliente")){
+            txtTelefonoCliente.setText("");
+            txtTelefonoCliente.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtTelefonoClienteFocusGained
+
     // Métodos GET Y SET
+    
+    public JTextField getTxtApellidosCliente() {
+        return txtApellidosCliente;
+    }
+
+    public void setTxtApellidosCliente(JTextField txtApellidosCliente) {
+        this.txtApellidosCliente = txtApellidosCliente;
+    }
+
+    public JTextField getTxtCalleCliente() {
+        return txtCalleCliente;
+    }
+
+    public void setTxtCalleCliente(JTextField txtCalleCliente) {
+        this.txtCalleCliente = txtCalleCliente;
+    }
+
+    public JTextField getTxtColoniaCliente() {
+        return txtColoniaCliente;
+    }
+
+    public void setTxtColoniaCliente(JTextField txtColoniaCliente) {
+        this.txtColoniaCliente = txtColoniaCliente;
+    }
+
+    public JTextField getTxtNombreCliente() {
+        return txtNombreCliente;
+    }
+
+    public void setTxtNombreCliente(JTextField txtNombreCliente) {
+        this.txtNombreCliente = txtNombreCliente;
+    }
+
+    public JTextField getTxtNumeroCliente() {
+        return txtNumeroCliente;
+    }
+
+    public void setTxtNumeroCliente(JTextField txtNumeroCliente) {
+        this.txtNumeroCliente = txtNumeroCliente;
+    }
+
+    public JTextField getTxtTelefonoCliente() {
+        return txtTelefonoCliente;
+    }
+
+    public void setTxtTelefonoCliente(JTextField txtTelefonoCliente) {
+        this.txtTelefonoCliente = txtTelefonoCliente;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblApellidosCliente;
-    public javax.swing.JTextField getTxtApellidosCliente() {
-        return txtApellidosCliente;
-    }
-
-    public void setTxtApellidosCliente(javax.swing.JTextField txtApellidosCliente) {
-        this.txtApellidosCliente = txtApellidosCliente;
-    }
-
-    public javax.swing.JTextField getTxtCalleCliente() {
-        return txtCalleCliente;
-    }
-
-    public void setTxtCalleCliente(javax.swing.JTextField txtCalleCliente) {
-        this.txtCalleCliente = txtCalleCliente;
-    }
-
-    public javax.swing.JTextField getTxtColoniaCliente() {
-        return txtColoniaCliente;
-    }
-
-    public void setTxtColoniaCliente(javax.swing.JTextField txtColoniaCliente) {
-        this.txtColoniaCliente = txtColoniaCliente;
-    }
-
-    public javax.swing.JTextField getTxtNombreCliente() {
-        return txtNombreCliente;
-    }
-
-    public void setTxtNombreCliente(javax.swing.JTextField txtNombreCliente) {
-        this.txtNombreCliente = txtNombreCliente;
-    }
-
-    public javax.swing.JTextField getTxtNumeroCliente() {
-        return txtNumeroCliente;
-    }
-
-    public void setTxtNumeroCliente(javax.swing.JTextField txtNumeroCliente) {
-        this.txtNumeroCliente = txtNumeroCliente;
-    }
-
-    public javax.swing.JTextField getTxtTelefonoCliente() {
-        return txtTelefonoCliente;
-    }
-
-    public void setTxtTelefonoCliente(javax.swing.JTextField txtTelefonoCliente) {
-        this.txtTelefonoCliente = txtTelefonoCliente;
-    }
-
     private javax.swing.JLabel lblCalleCliente;
     private javax.swing.JLabel lblColoniaCliente;
     private javax.swing.JLabel lblNombreCliente;

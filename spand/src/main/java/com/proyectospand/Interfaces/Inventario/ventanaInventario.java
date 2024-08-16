@@ -1,10 +1,16 @@
 
 package com.proyectospand.Interfaces.Inventario;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class ventanaInventario extends javax.swing.JPanel {
 
@@ -19,6 +25,8 @@ public class ventanaInventario extends javax.swing.JPanel {
         pnlForm.add(rp, BorderLayout.CENTER);
         pnlForm.revalidate();
         pnlForm.repaint();
+
+        cargarDatosProductos();
     }
 
     @SuppressWarnings("unchecked")
@@ -297,11 +305,7 @@ public class ventanaInventario extends javax.swing.JPanel {
     }//GEN-LAST:event_bttnEditarActionPerformed
 
     private void bttnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGuardarActionPerformed
-        if(modoAgregar){
-
-        } else if(modoEditar){
-            
-        }
+        cargarDatosProductos();
     }//GEN-LAST:event_bttnGuardarActionPerformed
 
     //Funciones
@@ -323,6 +327,34 @@ public class ventanaInventario extends javax.swing.JPanel {
         lblGuardar.setEnabled(habilitar);
         lblCancelar.setEnabled(habilitar);
     }
+
+    // Función para cargar los datos de la base de datos
+    private void cargarDatosProductos() {
+    DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
+    model.setRowCount(0); // Limpiar la tabla
+
+    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
+        String sql = "SELECT idProducto, nombreProducto, descripcion, precioActual, cantidadExistencia, precioAnterior, activo FROM producto";
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Object[] row = new Object[7];
+                row[0] = rs.getInt("idProducto");
+                row[1] = rs.getString("nombreProducto");
+                row[2] = rs.getString("descripcion");
+                row[3] = rs.getString("precioActual");
+                row[4] = rs.getString("cantidadExistencia");
+                row[5] = rs.getString("precioAnterior");
+                row[6] = rs.getBoolean("activo")?"Si":"No";
+                model.addRow(row); // Agregar fila al modelo
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        System.out.println("Error al cargar los productos: " + ex.getMessage());
+    }
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
