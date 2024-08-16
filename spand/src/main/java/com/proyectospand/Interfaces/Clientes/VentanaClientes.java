@@ -131,13 +131,13 @@ public class VentanaClientes extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Cliente", "Nombre", "Apellidos", "Calle", "Numero", "Colonia", "Activo", "Telefono"
+                "ID Cliente", "Nombre", "Apellidos", "Calle", "Numero", "Colonia", "Activo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
