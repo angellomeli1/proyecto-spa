@@ -1,9 +1,16 @@
 
 package com.proyectospand.Interfaces.Proveedores;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author omarr
@@ -22,6 +29,8 @@ public class VentanaProveedor extends javax.swing.JPanel {
         pnlFormProv.add(rprov, BorderLayout.CENTER);
         pnlFormProv.revalidate();
         pnlFormProv.repaint();
+
+        cargarDatosProveedores();
     }
 
     /**
@@ -299,6 +308,31 @@ public class VentanaProveedor extends javax.swing.JPanel {
         bttnCancelar.setEnabled(habilitar);
         lblGuardar.setEnabled(habilitar);
         lblCancelar.setEnabled(habilitar);
+    }
+
+    private void cargarDatosProveedores() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Limpiar la tabla
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
+            String sql = "SELECT idProveedores, nombreProv, calle, colonia, activo  FROM proveedores";
+            try (PreparedStatement stmt = conn.prepareStatement(sql);
+                    ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+                    Object[] row = new Object[5];
+                    row[0] = rs.getInt("idProveedores");
+                    row[1] = rs.getString("nombreProv");
+                    row[2] = rs.getString("calle");
+                    row[3] = rs.getString("colonia");
+                    row[4] = rs.getBoolean("activo") ? "Si" : "No";
+                    model.addRow(row); // Agregar fila al modelo
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Error al cargar los productos: " + ex.getMessage());
+        }
     }
     
 
