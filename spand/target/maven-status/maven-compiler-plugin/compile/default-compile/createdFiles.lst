@@ -34,7 +34,6 @@ com\proyectospand\Interfaces\Proveedores\RegistrarProveedorForm$6.class
 com\proyectospand\Interfaces\Empleados\RegistrarEmpleadoForm$12.class
 com\proyectospand\Interfaces\Inventario\ventanaInventario$1.class
 com\proyectospand\Interfaces\Proveedores\RegistrarProveedorForm$8.class
-com\proyectospand\Entidades\Proveedores$TelefonoProveedor.class
 com\proyectospand\Interfaces\Login\Login$5.class
 com\proyectospand\Interfaces\Proveedores\RegistrarProveedorForm$5.class
 com\proyectospand\Interfaces\Login\Login$2.class
@@ -49,7 +48,6 @@ com\proyectospand\Interfaces\Empleados\VentanaEmpleados$2.class
 com\proyectospand\Interfaces\Proveedores\RegistrarProveedorForm$10.class
 com\proyectospand\Interfaces\ventanaPrincipal\menuPrincipalInventarista$1.class
 com\proyectospand\ConexionDB\validarCredenciales.class
-com\proyectospand\Entidades\Proveedores$CorreoProveedor.class
 com\proyectospand\Entidades\Proveedores.class
 com\proyectospand\Interfaces\confUI.class
 com\proyectospand\Interfaces\Empleados\RegistrarEmpleadoForm$2.class
@@ -64,7 +62,6 @@ com\proyectospand\Interfaces\Empleados\RegistrarEmpleadoForm$1.class
 com\proyectospand\Interfaces\Empleados\RegistrarEmpleadoForm$8.class
 com\proyectospand\Interfaces\Proveedores\RegistrarProveedorForm$9.class
 com\proyectospand\Interfaces\ventanaPrincipal\menuPrincipalAdministrador$3.class
-com\proyectospand\Entidades\Empleados$TelefonoEmp.class
 com\proyectospand\Interfaces\Empleados\VentanaEmpleados$3.class
 com\proyectospand\datos\interfaces\Crud.class
 com\proyectospand\Interfaces\Proveedores\RegistrarProveedorForm$3.class

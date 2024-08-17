@@ -117,7 +117,7 @@ public class Empleados {
         this.fechaDeContrato = fechaDeContrato;
     }
 
-    public boolean isActivo() {
+    public boolean getActivo() {
         return activo;
     }
 

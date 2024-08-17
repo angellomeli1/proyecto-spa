@@ -11,7 +11,6 @@ public class TipoEmpleado {
     public TipoEmpleado(){
         this.idTipoEmpleado = 0;
         this.nombreTipo = "";
-        this.sueldo = 0.0;
     }// Fin del constructor vacío
 
     // Constuctor con parámetros

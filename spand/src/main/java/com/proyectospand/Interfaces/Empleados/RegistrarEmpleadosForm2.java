@@ -34,6 +34,8 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
         txtTelefonoEmp = new javax.swing.JTextField();
         lblClaveEmp = new javax.swing.JLabel();
         txtPassClaveEmp = new javax.swing.JPasswordField();
+        lblClaveEmp1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(230, 230, 250));
 
@@ -99,19 +101,25 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
             }
         });
 
+        lblClaveEmp1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblClaveEmp1.setForeground(new java.awt.Color(102, 102, 102));
+        lblClaveEmp1.setText("Clave de ingreso*");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtPassClaveEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(lblFechaContratoEmp, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtFechaContratoEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(lblClaveEmp, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTelefonoEmp, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTelefonoEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPassClaveEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(lblFechaContratoEmp)
+                    .addComponent(txtFechaContratoEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(lblClaveEmp)
+                    .addComponent(lblTelefonoEmp)
+                    .addComponent(txtTelefonoEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(lblClaveEmp1)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -125,11 +133,15 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
                 .addComponent(lblTelefonoEmp)
                 .addGap(4, 4, 4)
                 .addComponent(txtTelefonoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblClaveEmp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblClaveEmp1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPassClaveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblClaveEmp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -198,7 +210,9 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lblClaveEmp;
+    private javax.swing.JLabel lblClaveEmp1;
     private javax.swing.JLabel lblFechaContratoEmp;
     private javax.swing.JLabel lblTelefonoEmp;
     private javax.swing.JTextField txtFechaContratoEmp;

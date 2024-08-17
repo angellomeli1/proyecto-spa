@@ -7,9 +7,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import com.proyectospand.Entidades.Empleados;
+import com.proyectospand.datos.EmpleadosDAO;
 
 /**
  *
@@ -20,10 +23,9 @@ public class VentanaEmpleados extends javax.swing.JPanel {
     RegistrarEmpleadosForm2 remp2 = new RegistrarEmpleadosForm2();
     boolean modoAgregar = false;
     boolean modoEditar = false;
+    DefaultTableModel modeloTabla;
+    EmpleadosDAO empleadosDAO = new EmpleadosDAO();
 
-    /**
-     * Creates new form VentanaEmpleados
-     */
     public VentanaEmpleados() {
         initComponents();
 
@@ -33,8 +35,9 @@ public class VentanaEmpleados extends javax.swing.JPanel {
         pnlFormEmp.add(remp, BorderLayout.CENTER);
         pnlFormEmp.revalidate();
         pnlFormEmp.repaint();
-
         cargarDatosEmpleados();
+        List<Empleados> listaEmpleados = empleadosDAO.listar();
+        System.out.println("Número de empleados: " + listaEmpleados.size());
     }
 
     /**
@@ -377,35 +380,32 @@ public class VentanaEmpleados extends javax.swing.JPanel {
     }
 
     private void cargarDatosEmpleados() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // Limpiar la tabla
-
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
-            String sql = "SELECT idEmpleado, TipoEmpleado_idTipoEmpleado, nombreEmp, apellidosEmp, calle, numero, colonia, nss, fechaContrato, activo, clave FROM empleado";
-            try (PreparedStatement stmt = conn.prepareStatement(sql);
-                    ResultSet rs = stmt.executeQuery()) {
-
-                while (rs.next()) {
-                    Object[] row = new Object[11];
-                    row[0] = rs.getInt("idEmpleado");
-                    row[1] = rs.getString("TipoEmpleado_idTipoEmpleado");
-                    row[2] = rs.getString("nombreEmp");
-                    row[3] = rs.getString("apellidosEmp");
-                    row[4] = rs.getString("calle");
-                    row[5] = rs.getString("numero");
-                    row[6] = rs.getString("colonia");
-                    row[7] = rs.getString("nss");
-                    row[8] = rs.getString("fechaContrato");
-                    row[9] = rs.getBoolean("activo") ? "Si" : "No";
-                    row[10] = rs.getString("clave");
-                    model.addRow(row); // Agregar fila al modelo
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("Error al cargar los productos: " + ex.getMessage());
+        // Obtener la lista de empleados desde el DAO
+        List<Empleados> listaEmpleados = empleadosDAO.listar();
+        modeloTabla = (DefaultTableModel) jTable1.getModel();
+        // Limpiar el modelo de tabla existente
+        modeloTabla.setRowCount(0); // Elimina todas las filas existentes
+        // Iterar sobre la lista de empleados y agregar los datos al modelo
+        for (Empleados emp : listaEmpleados) {
+            modeloTabla.addRow(new Object[] {
+                emp.getIdEmpleado(),
+                emp.getTipo().getNombreTipo(),
+                emp.getNombreEmp(),
+                emp.getApellidosEmp(),
+                emp.getCalle(),
+                emp.getNumero(),
+                emp.getColonia(),
+                emp.getNss(),
+                emp.getFechaDeContrato(),
+                emp.getActivo() ? "Sí" : "No"
+            });
         }
+        
+        // Establecer el modelo de la tabla
+        jTable1.setModel(modeloTabla);
     }
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttnAgregar;
