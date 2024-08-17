@@ -4,7 +4,6 @@ import com.proyectospand.Entidades.Empleados;
 import com.proyectospand.Interfaces.confUI;
 import com.proyectospand.Interfaces.Inventario.*;
 import com.proyectospand.Interfaces.Proveedores.*;
-import com.proyectospand.Interfaces.Citas.*;
 
 import com.proyectospand.Interfaces.Empleados.*;
 import com.proyectospand.Interfaces.Clientes.*;
@@ -13,7 +12,6 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
     private Empleados empleado = new Empleados();
     private ventanaInventario inventario = new ventanaInventario();
     private VentanaProveedor proveedores = new VentanaProveedor();
-    private ventanaCitas citas = new ventanaCitas();
     private VentanaEmpleados empleados = new VentanaEmpleados();
     private VentanaClientes clientes = new VentanaClientes();
 

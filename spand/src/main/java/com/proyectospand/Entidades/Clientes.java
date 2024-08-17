@@ -1,7 +1,5 @@
 package com.proyectospand.Entidades;
 
-import com.proyectospand.Entidades.Empleados.TelefonoEmp;
-
 public class Clientes {
     // Atributos
     private int idCliente;

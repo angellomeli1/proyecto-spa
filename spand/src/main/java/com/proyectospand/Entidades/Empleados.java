@@ -9,7 +9,6 @@ public class Empleados {
     private String calle;
     private String numero;
     private String colonia;
-    private TelefonoEmp telefono = new TelefonoEmp();
     private String nss;
     private Date fechaDeContrato;
     private boolean activo;
@@ -134,42 +133,4 @@ public class Empleados {
         this.contrasena = contrasena;
     }
 
-    public TelefonoEmp getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(TelefonoEmp telefono) {
-        this.telefono = telefono;
-    }
-
-    public class TelefonoEmp{
-        private int id;
-        private String numero;
-
-        public TelefonoEmp() {
-            this.id = 0;
-            this.numero = "";
-        }
-
-        public TelefonoEmp(int id, String numero) {
-            this.id = id;
-            this.numero = numero;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getNumero() {
-            return numero;
-        }
-
-        public void setNumero(String numero) {
-            this.numero = numero;
-        }
-    }
 }
