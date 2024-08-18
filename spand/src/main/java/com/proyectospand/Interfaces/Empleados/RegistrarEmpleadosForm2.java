@@ -4,19 +4,29 @@
  */
 package com.proyectospand.Interfaces.Empleados;
 
+import com.toedter.calendar.JCalendar;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import com.proyectospand.ConexionDB.conexionDB;
+import com.proyectospand.Entidades.TipoEmpleado;
+
 
 /**
  *
  * @author omarr
  */
 public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
-
-    /**
-     * Creates new form RegistrarProveedoresForm2
-     */
+    
     public RegistrarEmpleadosForm2() {
         initComponents();
+        cargarTiposEmpleados();
     }
 
     /**
@@ -30,12 +40,11 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
 
         lblFechaContratoEmp = new javax.swing.JLabel();
         txtFechaContratoEmp = new javax.swing.JTextField();
-        lblTelefonoEmp = new javax.swing.JLabel();
-        txtTelefonoEmp = new javax.swing.JTextField();
-        lblClaveEmp = new javax.swing.JLabel();
+        lblTipoEmpleado = new javax.swing.JLabel();
         txtPassClaveEmp = new javax.swing.JPasswordField();
         lblClaveEmp1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcbTipoEmpleado = new javax.swing.JComboBox<>();
+        bttnSeleccionar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(230, 230, 250));
 
@@ -60,30 +69,9 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
             }
         });
 
-        lblTelefonoEmp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblTelefonoEmp.setForeground(new java.awt.Color(102, 102, 102));
-        lblTelefonoEmp.setText("Teléfono*");
-
-        txtTelefonoEmp.setForeground(new java.awt.Color(153, 153, 153));
-        txtTelefonoEmp.setText("Ingresa el teléfono del empleado");
-        txtTelefonoEmp.setEnabled(false);
-        txtTelefonoEmp.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTelefonoEmpFocusGained(evt);
-            }
-        });
-        txtTelefonoEmp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtTelefonoEmpMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtTelefonoEmpMousePressed(evt);
-            }
-        });
-
-        lblClaveEmp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblClaveEmp.setForeground(new java.awt.Color(102, 102, 102));
-        lblClaveEmp.setText("Clave de ingreso*");
+        lblTipoEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipoEmpleado.setForeground(new java.awt.Color(102, 102, 102));
+        lblTipoEmpleado.setText("Tipo de empleado:");
 
         txtPassClaveEmp.setText("***************");
         txtPassClaveEmp.setEnabled(false);
@@ -105,6 +93,16 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
         lblClaveEmp1.setForeground(new java.awt.Color(102, 102, 102));
         lblClaveEmp1.setText("Clave de ingreso*");
 
+        jcbTipoEmpleado.setEnabled(false);
+
+        bttnSeleccionar.setText("SELECCIONAR");
+        bttnSeleccionar.setEnabled(false);
+        bttnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnSeleccionarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,12 +113,12 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
                     .addComponent(txtPassClaveEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                     .addComponent(lblFechaContratoEmp)
                     .addComponent(txtFechaContratoEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(lblClaveEmp)
-                    .addComponent(lblTelefonoEmp)
-                    .addComponent(txtTelefonoEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(lblTipoEmpleado)
                     .addComponent(lblClaveEmp1)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(130, Short.MAX_VALUE))
+                    .addComponent(jcbTipoEmpleado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bttnSeleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,20 +126,18 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lblFechaContratoEmp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFechaContratoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblTelefonoEmp)
-                .addGap(4, 4, 4)
-                .addComponent(txtTelefonoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bttnSeleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtFechaContratoEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblClaveEmp1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPassClaveEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblClaveEmp)
+                .addComponent(lblTipoEmpleado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addComponent(jcbTipoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(236, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,27 +162,6 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtFechaContratoEmpMouseExited
 
-    private void txtTelefonoEmpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoEmpFocusGained
-        if (txtTelefonoEmp.getText().equals("Ingresa el teléfono del empleado")){
-            txtTelefonoEmp.setText("");
-            txtTelefonoEmp.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_txtTelefonoEmpFocusGained
-
-    private void txtTelefonoEmpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoEmpMouseExited
-        if (txtTelefonoEmp.getText().isEmpty()){
-            txtTelefonoEmp.setText("Ingresa el teléfono del empleado");
-            txtTelefonoEmp.setForeground(Color.GRAY);
-        }
-    }//GEN-LAST:event_txtTelefonoEmpMouseExited
-
-    private void txtTelefonoEmpMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoEmpMousePressed
-        if (txtTelefonoEmp.getText().equals("Ingresa el teléfono del empleado")){
-            txtTelefonoEmp.setText("");
-            txtTelefonoEmp.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_txtTelefonoEmpMousePressed
-
     private void txtPassClaveEmpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassClaveEmpFocusGained
         if (String.valueOf(txtPassClaveEmp.getPassword()).equals("***************")){
             txtPassClaveEmp.setText("");
@@ -208,15 +183,123 @@ public class RegistrarEmpleadosForm2 extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtPassClaveEmpMouseExited
 
+    private void bttnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnSeleccionarActionPerformed
+        // Crear un JCalendar
+        JCalendar calendar = new JCalendar();
+        // Mostrar un cuadro de diálogo modal con el JCalendar
+        int option = JOptionPane.showConfirmDialog(null, calendar, "Seleccionar Fecha", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
+
+        // Si el usuario presiona OK, obtener la fecha seleccionada
+        if (option == JOptionPane.OK_OPTION) {
+            Date selectedDate = calendar.getDate();
+
+            // Formatear la fecha y ponerla en el JTextField
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedDate = dateFormat.format(selectedDate);
+            txtFechaContratoEmp.setText(formattedDate);
+        }
+    }//GEN-LAST:event_bttnSeleccionarActionPerformed
+
+    private void cargarTiposEmpleados() {
+    Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    try {
+        // Obtener una conexión del pool
+        con = conexionDB.getIntance().getConnection();
+
+        // Consulta SQL para obtener los nombres de los tipos de empleados
+        String sql = "SELECT * FROM TipoEmpleado";
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+
+        // Limpiar el JComboBox antes de llenarlo
+        jcbTipoEmpleado.removeAllItems();
+
+        // Llenar el JComboBox con los nombres de los tipos de empleados
+        while (rs.next()) {
+                int id = rs.getInt("idTipoEmpleado");
+                String nombre = rs.getString("nombreTipo");
+                double sueldo = rs.getDouble("sueldo");
+                TipoEmpleado tipoEmpleado = new TipoEmpleado(id, nombre,sueldo);
+                jcbTipoEmpleado.addItem(tipoEmpleado.getNombreTipo());
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error al cargar tipos de empleados: " + ex.getMessage());
+    } finally {
+        try {
+            // Cerrar ResultSet, PreparedStatement y devolver la conexión al pool
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) conexionDB.getIntance().closeConnection(con);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+
+    public String getFechaContrato(){
+        return txtFechaContratoEmp.getText();
+    }
+
+    public String getClave(){
+        return String.valueOf(txtPassClaveEmp.getPassword());
+    }
+
+    public String getTipo(){
+        return jcbTipoEmpleado.getSelectedItem().toString();
+    }
+    
+    public int getTipoEmpleado(){
+        String tipoEmpleado = jcbTipoEmpleado.getSelectedItem().toString();
+        switch(tipoEmpleado){
+            case "administrador":
+                return 1;
+            case "recepcionista":
+                return 2;
+            case "inventarista":
+                return 3;
+            case "masajista":
+                return 4;
+            default:
+                return 4;
+        }
+    }
+
+    public void setFechaContrato(String fecha){
+        txtFechaContratoEmp.setText(fecha);
+    }
+
+    public void setClave(String clave){
+        txtPassClaveEmp.setText(clave);
+    }
+
+    public void setTipo(String tipo){
+        jcbTipoEmpleado.setSelectedItem(tipo);
+    }
+
+    public void limpiarCampos(){
+        txtFechaContratoEmp.setText("Ingresa la fecha del empleado");
+        txtPassClaveEmp.setText("***************");
+        jcbTipoEmpleado.setSelectedIndex(0);
+    }
+
+    public void habilitarComponentes(Boolean estado){
+        txtPassClaveEmp.setEnabled(estado);
+        jcbTipoEmpleado.setEnabled(estado);
+        bttnSeleccionar.setEnabled(estado);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel lblClaveEmp;
+    private javax.swing.JButton bttnSeleccionar;
+    private javax.swing.JComboBox<String> jcbTipoEmpleado;
     private javax.swing.JLabel lblClaveEmp1;
     private javax.swing.JLabel lblFechaContratoEmp;
-    private javax.swing.JLabel lblTelefonoEmp;
+    private javax.swing.JLabel lblTipoEmpleado;
     private javax.swing.JTextField txtFechaContratoEmp;
     private javax.swing.JPasswordField txtPassClaveEmp;
-    private javax.swing.JTextField txtTelefonoEmp;
     // End of variables declaration//GEN-END:variables
 }

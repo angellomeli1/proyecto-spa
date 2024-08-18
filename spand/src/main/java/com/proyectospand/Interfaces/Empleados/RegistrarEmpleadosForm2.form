@@ -27,13 +27,13 @@
                   <Component id="txtPassClaveEmp" alignment="1" pref="202" max="32767" attributes="0"/>
                   <Component id="lblFechaContratoEmp" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="txtFechaContratoEmp" alignment="1" pref="202" max="32767" attributes="0"/>
-                  <Component id="lblClaveEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTelefonoEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtTelefonoEmp" alignment="1" pref="202" max="32767" attributes="0"/>
+                  <Component id="lblTipoEmpleado" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblClaveEmp1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jcbTipoEmpleado" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="130" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="bttnSeleccionar" pref="112" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,20 +43,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblFechaContratoEmp" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtFechaContratoEmp" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lblTelefonoEmp" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-              <Component id="txtTelefonoEmp" min="-2" pref="36" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="bttnSeleccionar" max="32767" attributes="0"/>
+                  <Component id="txtFechaContratoEmp" pref="36" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="lblClaveEmp1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="txtPassClaveEmp" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lblClaveEmp" min="-2" max="-2" attributes="0"/>
+              <Component id="lblTipoEmpleado" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jComboBox1" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace pref="164" max="32767" attributes="0"/>
+              <Component id="jcbTipoEmpleado" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace pref="236" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,7 +86,7 @@
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtFechaContratoEmpMousePressed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblTelefonoEmp">
+    <Component class="javax.swing.JLabel" name="lblTipoEmpleado">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
@@ -95,32 +94,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tel&#xe9;fono*"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtTelefonoEmp">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="99" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Ingresa el tel&#xe9;fono del empleado"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTelefonoEmpFocusGained"/>
-        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTelefonoEmpMouseExited"/>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTelefonoEmpMousePressed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblClaveEmp">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Clave de ingreso*"/>
+        <Property name="text" type="java.lang.String" value="Tipo de empleado:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtPassClaveEmp">
@@ -145,15 +119,25 @@
         <Property name="text" type="java.lang.String" value="Clave de ingreso*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="jcbTipoEmpleado">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="bttnSeleccionar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SELECCIONAR"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttnSeleccionarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

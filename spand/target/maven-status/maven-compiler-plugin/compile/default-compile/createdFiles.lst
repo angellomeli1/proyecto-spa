@@ -25,7 +25,6 @@ com\proyectospand\Interfaces\Empleados\RegistrarEmpleadoForm$11.class
 com\proyectospand\Interfaces\Inventario\RegistrarProductoForm$1.class
 com\proyectospand\Interfaces\Proveedores\RegistrarProveedorForm.class
 com\proyectospand\Interfaces\Proveedores\VentanaProveedor$1.class
-com\proyectospand\Interfaces\Empleados\RegistrarEmpleadosForm2$6.class
 com\proyectospand\Interfaces\Inventario\RegistrarProductoForm$2.class
 com\proyectospand\Entidades\Empleados.class
 com\proyectospand\Interfaces\Empleados\RegistrarEmpleadoForm$5.class

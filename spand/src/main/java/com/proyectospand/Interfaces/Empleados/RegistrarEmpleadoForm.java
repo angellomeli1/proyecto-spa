@@ -12,9 +12,6 @@ import javax.swing.event.DocumentListener;
  */
 public class RegistrarEmpleadoForm extends javax.swing.JPanel {
 
-    /**
-     * Creates new form RegistrarEmpleadoForm
-     */
     public RegistrarEmpleadoForm() {
         initComponents();
     }
@@ -347,6 +344,72 @@ public class RegistrarEmpleadoForm extends javax.swing.JPanel {
             txtNssEmp.setForeground(Color.GRAY);
         }
     }//GEN-LAST:event_txtNssEmpMouseExited
+
+    public String getNombreEmp(){
+        return txtNombreEmp.getText();
+    }
+
+    public String getApellidosEmp(){
+        return txtApellidosEmp.getText();
+    }
+
+    public String getCalleEmp(){
+        return txtCalleEmp.getText();
+    }
+
+    public String getNumeroEmp(){
+        return txtNumeroEmp.getText();
+    }
+
+    public String getColoniaEmp(){
+        return txtColoniaEmp.getText();
+    }
+
+    public String getNSS(){
+        return txtNssEmp.getText();
+    }
+    
+    public void setTxtNombreEmp(String nombre){
+        txtNombreEmp.setText(nombre);
+    }
+
+    public void setTxtApellidosEmp(String apellidos){
+        txtApellidosEmp.setText(apellidos);
+    }
+
+    public void setTxtCalleEmp(String calle){
+        txtCalleEmp.setText(calle);
+    }
+
+    public void setTxtNumeroEmp(String numero){
+        txtNumeroEmp.setText(numero);
+    }
+
+    public void setTxtColoniaEmp(String colonia){
+        txtColoniaEmp.setText(colonia);
+    }
+
+    public void setTxtNssEmp(String nss){
+        txtNssEmp.setText(nss);
+    }
+
+    public void limpiarCampos(){
+        txtApellidosEmp.setText("Ingresa los apellidos del empleado");
+        txtCalleEmp.setText("Ingresa la calle del empleado");
+        txtColoniaEmp.setText("Ingresa la colonia del empleado");
+        txtNssEmp.setText("Ingresa el NSS del empleado");
+        txtNombreEmp.setText("Ingresa el nombre del empleado");
+        txtNumeroEmp.setText("Ingresa el numero del empleado");
+    }
+
+    public void habilitarCampos(Boolean estado){
+        txtApellidosEmp.setEnabled(estado);
+        txtCalleEmp.setEnabled(estado);
+        txtColoniaEmp.setEnabled(estado);
+        txtNssEmp.setEnabled(estado);
+        txtNombreEmp.setEnabled(estado);
+        txtNumeroEmp.setEnabled(estado);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblApellidosEmp;
