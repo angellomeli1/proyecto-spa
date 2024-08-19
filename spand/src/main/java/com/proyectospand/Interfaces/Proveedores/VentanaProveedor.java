@@ -236,6 +236,7 @@ public class VentanaProveedor extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setAutoscrolls(false);
         jScrollPane1.setViewportView(jTable1);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
