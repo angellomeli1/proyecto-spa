@@ -13,7 +13,7 @@ public class menuPrincipalInventarista extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         confUI.applyCustomFont(16f, lblBienvenida);
         lblBienvenida.setText("BIENVENIDO: " + empleado.getNombreEmp() + " - Rol: " + empleado.getTipo().getNombreTipo());
-        ventanaInventario inventario = new ventanaInventario();
+        ventanaInventario inventario = new ventanaInventario(empleado);
         inventario.setSize(1180,610);
         inventario.setLocation(0,0);
         jPanel1.add(inventario);

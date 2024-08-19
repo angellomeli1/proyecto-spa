@@ -7,7 +7,7 @@ public class Producto {
     private String descripcion;
     private double precioActual;
     private int cantidadExistencia;
-    private double precioAnterior;
+    private boolean activo;
     
     // CONSTRUCTORES
     // Constructor vacío
@@ -17,18 +17,18 @@ public class Producto {
         this.descripcion = "";
         this.precioActual = 0.0;
         this.cantidadExistencia = 0;
-        this.precioAnterior = 0.0;
+        this.activo = true;
     }// Fin del constructor vacío
 
     // Constructor con parámetros
     public Producto(int idProducto, String nombreProducto, String descripcion, double precioActual,
-            int cantidadExistencia, double precioAnterior) {
+            int cantidadExistencia,boolean activo) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
         this.precioActual = precioActual;
         this.cantidadExistencia = cantidadExistencia;
-        this.precioAnterior = precioAnterior;
+        this.activo = activo;
     }// Fin del constructor con parámetros
 
     //Constructor con copia
@@ -38,7 +38,7 @@ public class Producto {
         this.descripcion = producto.descripcion;
         this.precioActual = producto.precioActual;
         this.cantidadExistencia = producto.cantidadExistencia;
-        this.precioAnterior = producto.precioAnterior;
+        this.activo = producto.activo;
     }// Fin del constructor con copia
 
     // ENCAPSULAMIENTO
@@ -82,13 +82,14 @@ public class Producto {
         this.cantidadExistencia = cantidadExistencia;
     }
 
-    public double getPrecioAnterior() {
-        return precioAnterior;
+    public boolean getActivo(){
+        return activo;
     }
 
-    public void setPrecioAnterior(double precioAnterior) {
-        this.precioAnterior = precioAnterior;
-    }// Fin del encapsulamiento
+    public void setActivo(boolean activo){
+        this.activo = activo;
+    }
+    // Fin del encapsulamiento
 
     // Métodos
     

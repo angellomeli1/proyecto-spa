@@ -10,7 +10,7 @@ import com.proyectospand.Interfaces.Clientes.*;
 public class menuPrincipalAdministrador extends javax.swing.JFrame {
 
     private Empleados empleado = new Empleados();
-    private ventanaInventario inventario = new ventanaInventario();
+    private ventanaInventario inventario;
     private VentanaProveedor proveedores;
     private VentanaEmpleados empleados;
     private VentanaClientes clientes = new VentanaClientes();
@@ -18,7 +18,8 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
     public menuPrincipalAdministrador(Empleados empleado) {
         this.empleado = empleado;
         this.proveedores = new VentanaProveedor(empleado);
-        empleados = new VentanaEmpleados(empleado);
+        this.inventario = new ventanaInventario(empleado);
+        this.empleados = new VentanaEmpleados(empleado);
         initComponents();
         this.setLocationRelativeTo(null);
         confUI.applyCustomFont(16f, lblBienvenida);

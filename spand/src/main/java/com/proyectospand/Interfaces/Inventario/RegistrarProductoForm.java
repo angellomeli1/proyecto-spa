@@ -34,8 +34,6 @@ public class RegistrarProductoForm extends javax.swing.JPanel {
         txtDescProducto = new javax.swing.JTextField();
         lblCantidadProducto = new javax.swing.JLabel();
         txtCantidadProducto = new javax.swing.JTextField();
-        lblProveedor = new javax.swing.JLabel();
-        jcombProveedor = new javax.swing.JComboBox<>();
         lblGananciaProducto = new javax.swing.JLabel();
         jcomGananciaProducto = new javax.swing.JComboBox<>();
 
@@ -78,17 +76,6 @@ public class RegistrarProductoForm extends javax.swing.JPanel {
         txtCantidadProducto.setText("Ingresa la cantidad de producto");
         txtCantidadProducto.setEnabled(false);
 
-        lblProveedor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblProveedor.setForeground(new java.awt.Color(102, 102, 102));
-        lblProveedor.setText("Proveedor del producto*");
-
-        jcombProveedor.setEnabled(false);
-        jcombProveedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcombProveedorActionPerformed(evt);
-            }
-        });
-
         lblGananciaProducto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblGananciaProducto.setForeground(new java.awt.Color(102, 102, 102));
         lblGananciaProducto.setText("Ganancia del producto (%)*");
@@ -115,8 +102,6 @@ public class RegistrarProductoForm extends javax.swing.JPanel {
                     .addComponent(txtDescProducto)
                     .addComponent(lblCantidadProducto)
                     .addComponent(txtCantidadProducto)
-                    .addComponent(lblProveedor)
-                    .addComponent(jcombProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblGananciaProducto)
                     .addComponent(jcomGananciaProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNombreProducto))
@@ -142,9 +127,7 @@ public class RegistrarProductoForm extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblProveedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcombProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblGananciaProducto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -163,6 +146,48 @@ public class RegistrarProductoForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcomGananciaProductoActionPerformed
 
+    public void limpiarCampos(){
+        txtNombreProducto.setText("Ingresa el nombre del producto");
+        txtDescProducto.setText("Ingresa la descripción del producto");
+        txtPrecioProducto.setText("Ingresa el precio del producto");
+        jcombProveedor.setSelectedIndex(0);
+        jcomGananciaProducto.setSelectedIndex(0);
+    }
+
+    //Metodos para obtener y guardar los datos
+    public String getNombre(){
+        return txtNombreProducto.getText();
+    }
+    public String getDesc(){
+        return txtDescProducto.getText();
+    }
+    public String getPrecio(){
+        return txtPrecioProducto.getText();
+    }
+    public String getGanancia(){
+        return jcomGananciaProducto.getSelectedItem().toString();
+    } 
+
+    public String getCantidad(){
+        return txtCantidadProducto.getText();
+    }
+
+    public void setNombre(String nombre){
+        txtNombreProducto.setText(nombre);
+    }
+    public void setDesc(String desc){
+        txtDescProducto.setText(desc);
+    }
+    public void setPrecio(String precio){
+        txtPrecioProducto.setText(precio);
+    }
+    public void setGanancia(String ganancia){
+        jcomGananciaProducto.setSelectedItem(ganancia);
+    }
+
+    public void setCantidad(String cantidad){
+        txtCantidadProducto.setText(cantidad);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jcomGananciaProducto;

@@ -1,23 +1,50 @@
 
 package com.proyectospand.Interfaces.Inventario;
+import com.proyectospand.Entidades.Empleados;
+import com.proyectospand.Entidades.Producto;
+import com.proyectospand.datos.ProductoDAO;
+
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class ventanaInventario extends javax.swing.JPanel {
 
-    RegistrarProductoForm rp = new RegistrarProductoForm();
+    RegistrarProductoForm rp = new RegistrarProductoForm(); //objeto para el panel de registrar producto
+
+    //Variables para las acciones de los botones (agregar, editar, buscar)
     boolean modoAgregar = false;
     boolean modoEditar = false;
-    public ventanaInventario() {
+    boolean modoBuscar = false;
+    //Fin variables para las acciones
+
+    //instancias para los productos
+    int productoAE;
+    boolean productoEstado;
+    //Fin instancias proyecto
+
+    Empleados empleadoE; // empleado que está manipulando el sistema
+    ProductoDAO prodDAO = new ProductoDAO(); //Instancia para la clase ProveedorDAO
+    DefaultTableModel modeloTabla; //Tabla para mostrar los datos
+
+    public ventanaInventario(Empleados empleado) {
+        this.empleadoE = empleado;
         initComponents();
         rp.setSize(340,529);
         rp.setLocation(0,0);
@@ -27,6 +54,79 @@ public class ventanaInventario extends javax.swing.JPanel {
         pnlForm.repaint();
 
         cargarDatosProductos();
+        tblProductos.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tblProductos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if(!e.getValueIsAdjusting()) {
+                    if(!modoAgregar) {
+                        int selectedRow = tblProductos.getSelectedRow();
+                        if(selectedRow >= 0) {  
+                            productoAE = Integer.parseInt(tblProductos.getValueAt(selectedRow, 0).toString());
+                            rp.setNombre(tblProductos.getValueAt(selectedRow, 1).toString());
+                            rp.setDesc(tblProductos.getValueAt(selectedRow, 2).toString());
+                            rp.setPrecio(tblProductos.getValueAt(selectedRow, 3).toString());
+                            rp.setCantidad(tblProductos.getValueAt(selectedRow, 4).toString());
+                            String estado = tblProductos.getValueAt(selectedRow, 5).toString();
+                            productoEstado = estado.equalsIgnoreCase("Activo") ? true : false;
+                            habilitarActDes();
+                            if (!modoEditar) {
+                                lblActDes.setText(productoEstado ? "Desactivar" : "Activar");
+                                lblActDes.revalidate();
+                                lblActDes.repaint();
+                            }
+                        }
+
+                    }
+                }
+            }
+        });
+
+        txtBusqueda.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actualizarTabla();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actualizarTabla();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actualizarTabla();
+            }
+
+            private void actualizarTabla(){
+                if(!txtBusqueda.getText().equalsIgnoreCase("INGRESA EL NOMBRE DEL PRODUCTO A BUSCAR")){
+                    String textoBusqueda = txtBusqueda.getText().trim();
+                    List<Producto> productos;
+
+                    if(textoBusqueda.isEmpty()){
+                        productos = prodDAO.listar();
+                    }
+                    else {
+                        productos = prodDAO.buscar(textoBusqueda);
+                    }
+
+                    DefaultTableModel modelo = (DefaultTableModel) tblProductos.getModel();
+                    modelo.setRowCount(0);
+
+                    for(Producto producto : productos){
+                        Object[] fila = new Object[]{
+                            producto.getIdProducto(),
+                            producto.getNombreProducto(),
+                            producto.getDescripcion(),
+                            producto.getPrecioActual(),
+                            producto.getCantidadExistencia(),
+                            producto.getActivo() ? "Activo" : "Inactivo"
+                        };
+                        modelo.addRow(fila);
+                    }
+                }
+            }
+            
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -42,7 +142,7 @@ public class ventanaInventario extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        bttnEliminar = new javax.swing.JButton();
+        bttnActDes = new javax.swing.JButton();
         bttnAgregar = new javax.swing.JButton();
         bttnEditar = new javax.swing.JButton();
         bttnBuscar = new javax.swing.JButton();
@@ -51,7 +151,7 @@ public class ventanaInventario extends javax.swing.JPanel {
         lblAgregar = new javax.swing.JLabel();
         lblEditar = new javax.swing.JLabel();
         lblBuscar = new javax.swing.JLabel();
-        lblEliminar = new javax.swing.JLabel();
+        lblActDes = new javax.swing.JLabel();
         lblGuardar = new javax.swing.JLabel();
         lblCancelar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -124,13 +224,13 @@ public class ventanaInventario extends javax.swing.JPanel {
 
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "NOMBRE", "DESCRIPCIÓN", "PRECIO", "EXISTENCIA"
+                "ID", "NOMBRE", "DESCRIPCIÓN", "PRECIO", "EXISTENCIA", "ACTIVO"
             }
         ));
         jScrollPane1.setViewportView(tblProductos);
@@ -138,11 +238,16 @@ public class ventanaInventario extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bttnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eliminar-producto.png"))); // NOI18N
-        bttnEliminar.setBorder(null);
-        bttnEliminar.setBorderPainted(false);
-        bttnEliminar.setContentAreaFilled(false);
-        jPanel3.add(bttnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 15, 72, 60));
+        bttnActDes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eliminar-producto.png"))); // NOI18N
+        bttnActDes.setBorder(null);
+        bttnActDes.setBorderPainted(false);
+        bttnActDes.setContentAreaFilled(false);
+        bttnActDes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnActDesActionPerformed(evt);
+            }
+        });
+        jPanel3.add(bttnActDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 15, 72, 60));
 
         bttnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agregar-producto.png"))); // NOI18N
         bttnAgregar.setBorder(null);
@@ -170,6 +275,11 @@ public class ventanaInventario extends javax.swing.JPanel {
         bttnBuscar.setBorder(null);
         bttnBuscar.setBorderPainted(false);
         bttnBuscar.setContentAreaFilled(false);
+        bttnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnBuscarActionPerformed(evt);
+            }
+        });
         jPanel3.add(bttnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 15, 72, 60));
 
         bttnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guardar-el-archivo.png"))); // NOI18N
@@ -189,6 +299,11 @@ public class ventanaInventario extends javax.swing.JPanel {
         bttnCancelar.setBorderPainted(false);
         bttnCancelar.setContentAreaFilled(false);
         bttnCancelar.setEnabled(false);
+        bttnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnCancelarActionPerformed(evt);
+            }
+        });
         jPanel3.add(bttnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 15, 72, 60));
 
         lblAgregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -206,10 +321,10 @@ public class ventanaInventario extends javax.swing.JPanel {
         lblBuscar.setText("Buscar");
         jPanel3.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 85, -1, 20));
 
-        lblEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblEliminar.setForeground(new java.awt.Color(102, 102, 102));
-        lblEliminar.setText("Eliminar");
-        jPanel3.add(lblEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 85, -1, 20));
+        lblActDes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblActDes.setForeground(new java.awt.Color(102, 102, 102));
+        lblActDes.setText("Activar");
+        jPanel3.add(lblActDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 85, -1, 20));
 
         lblGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblGuardar.setForeground(new java.awt.Color(102, 102, 102));
@@ -229,6 +344,20 @@ public class ventanaInventario extends javax.swing.JPanel {
         txtBusqueda.setForeground(new java.awt.Color(153, 153, 153));
         txtBusqueda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtBusqueda.setText("INGRESA EL NOMBRE DEL PRODUCTO A BUSCAR");
+        txtBusqueda.setEnabled(false);
+        txtBusqueda.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBusquedaFocusGained(evt);
+            }
+        });
+        txtBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtBusquedaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtBusquedaMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout apartadoProductosLayout = new javax.swing.GroupLayout(apartadoProductos);
         apartadoProductos.setLayout(apartadoProductosLayout);
@@ -282,10 +411,18 @@ public class ventanaInventario extends javax.swing.JPanel {
             habilitarCampos(false);
             modoAgregar = false;
             habilitarGuardarCancelar(false);
+            bttnActDes.setEnabled(true);
+            lblActDes.setEnabled(true);
+            lblBuscar.setEnabled(true);
+            bttnBuscar.setEnabled(true);
         } else {
             habilitarCampos(true);
             modoAgregar = true;
             habilitarGuardarCancelar(true);
+            bttnActDes.setEnabled(false);
+            lblActDes.setEnabled(false);
+            lblBuscar.setEnabled(false);
+            bttnBuscar.setEnabled(false);
         }
     }//GEN-LAST:event_bttnAgregarActionPerformed
 
@@ -304,9 +441,100 @@ public class ventanaInventario extends javax.swing.JPanel {
         //Una vez que la query sea exitosa y guarde los cambios, los campos se deshabilitaran
     }//GEN-LAST:event_bttnEditarActionPerformed
 
-    private void bttnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGuardarActionPerformed
+    private void txtBusquedaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBusquedaFocusGained
+        txtBusqueda.setText("");
+        txtBusqueda.setForeground(Color.black);
+    }//GEN-LAST:event_txtBusquedaFocusGained
+
+    private void txtBusquedaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBusquedaMouseExited
+        if(txtBusqueda.getText().isEmpty()){
+           txtBusqueda.setText("INGRESA EL NOMBRE DEL PRODUCTO A BUSCAR");
+           txtBusqueda.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_txtBusquedaMouseExited
+
+    private void txtBusquedaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBusquedaMousePressed
+        txtBusqueda.setText("");
+        txtBusqueda.setForeground(Color.black);
+    }//GEN-LAST:event_txtBusquedaMousePressed
+
+    private void bttnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
+        if(modoBuscar){
+            txtBusqueda.setEnabled(false);
+            txtBusqueda.setFocusable(false);
+            modoBuscar = false;
+            txtBusqueda.setText("INGRESA EL NOMBRE DEL PRODUCTO A BUSCAR");
+            cargarDatosProductos();
+        }
+        else {
+            txtBusqueda.setEnabled(true);
+            txtBusqueda.setFocusable(true);
+            modoBuscar = true;
+        }
+    }
+
+    private void bttnActDesActionPerformed(java.awt.event.ActionEvent evt) {
+        if(productoEstado){
+            if(prodDAO.desactivar(productoAE, empleadoE)){
+                JOptionPane.showMessageDialog(null, "Producto desactivado exitosamente");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Hubo un error al desactivar el producto");
+            }
+        }
+        else {
+            if(prodDAO.activar(productoAE)){
+                JOptionPane.showMessageDialog(null, "Producto activado exitosamente");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Hubo un error al activar el producto");
+            }
+        }
+        productoAE = 0;
+        habilitarActDes();
         cargarDatosProductos();
-    }//GEN-LAST:event_bttnGuardarActionPerformed
+    }
+
+    private void bttnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
+        rp.limpiarCampos();
+        modoAgregar = false;
+        modoEditar = false;
+        habilitarCampos(false);
+        bttnBuscar.setEnabled(true);
+        lblBuscar.setEnabled(true);
+        bttnActDes.setEnabled(true);
+        lblActDes.setEnabled(true);
+        lblRegistrarProducto.setText("¡REGISTRA UN PRODUCTO!");
+    }
+
+    private void bttnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
+        String nombreProducto = rp.getNombre();
+        String descripcion = rp.getDesc();
+        double porcentajeGanancia = (Double.parseDouble(rp.getGanancia())/100)+1.0;
+        double precioActual = Double.parseDouble(rp.getPrecio()) * porcentajeGanancia;
+        int cantidadExistencia = Integer.parseInt(rp.getCantidad());
+        Producto producto = new Producto();
+        if(modoAgregar){
+            producto = (new Producto(0, nombreProducto, descripcion, precioActual, cantidadExistencia,true));
+            if(prodDAO.insertar(producto,empleadoE)){
+                JOptionPane.showMessageDialog(null, "¡PRODUCTO AGREGADO CORRECTAMENTE!");
+                cargarDatosProductos();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "¡ERROR AL AGREGAR PRODUCTO!");
+            }
+        }
+        if (modoEditar) {
+            producto = new Producto(productoAE,nombreProducto,descripcion,precioActual,cantidadExistencia,productoEstado);
+            if(prodDAO.actualizar(producto,empleadoE)){
+                JOptionPane.showMessageDialog(null, "¡PRODUCTO ACTUALIZADO CORRECTAMENTE!");
+                cargarDatosProductos();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "¡ERROR AL ACTUALIZAR PRODUCTO!");
+            }
+        }
+    }
 
     //Funciones
 
@@ -330,50 +558,50 @@ public class ventanaInventario extends javax.swing.JPanel {
 
     // Función para cargar los datos de la base de datos
     private void cargarDatosProductos() {
-    DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
-    model.setRowCount(0); // Limpiar la tabla
-
-    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
-        String sql = "SELECT idProducto, nombreProducto, descripcion, precioActual, cantidadExistencia, precioAnterior, activo FROM producto";
-        try (PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Object[] row = new Object[7];
-                row[0] = rs.getInt("idProducto");
-                row[1] = rs.getString("nombreProducto");
-                row[2] = rs.getString("descripcion");
-                row[3] = rs.getString("precioActual");
-                row[4] = rs.getString("cantidadExistencia");
-                row[5] = rs.getString("precioAnterior");
-                row[6] = rs.getBoolean("activo")?"Si":"No";
-                model.addRow(row); // Agregar fila al modelo
-            }
+        List<Producto> productos = prodDAO.listar();
+        modeloTabla = (DefaultTableModel) tblProductos.getModel();
+        modeloTabla.setRowCount(0);
+        for(Producto producto : productos){
+            modeloTabla.addRow(new Object[]{
+                producto.getIdProducto(),
+                producto.getNombreProducto(),
+                producto.getDescripcion(),
+                producto.getPrecioActual(),
+                producto.getCantidadExistencia(),
+                producto.getActivo() ? "Activo" : "Inactivo"
+            });
         }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        System.out.println("Error al cargar los productos: " + ex.getMessage());
     }
-}
+
+    private void habilitarActDes(){
+        if(productoAE == 0){
+            bttnActDes.setEnabled(false);
+            lblActDes.setEnabled(false);
+        } else {
+            bttnActDes.setEnabled(true);
+            lblActDes.setEnabled(true);
+        }
+        lblActDes.setText("Activar");
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel apartadoProductos;
+    private javax.swing.JButton bttnActDes;
     private javax.swing.JButton bttnAgregar;
     private javax.swing.JButton bttnBuscar;
     private javax.swing.JButton bttnCancelar;
     private javax.swing.JButton bttnEditar;
-    private javax.swing.JButton bttnEliminar;
     private javax.swing.JButton bttnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblActDes;
     private javax.swing.JLabel lblAgregar;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCancelar;
     private javax.swing.JLabel lblEditar;
-    private javax.swing.JLabel lblEliminar;
     private javax.swing.JLabel lblGuardar;
     private javax.swing.JLabel lblInformaciónProducto;
     private javax.swing.JLabel lblRegistrarProducto;
