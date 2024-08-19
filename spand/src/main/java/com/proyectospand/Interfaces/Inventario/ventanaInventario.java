@@ -34,7 +34,7 @@ public class ventanaInventario extends javax.swing.JPanel {
     boolean modoBuscar = false;
     //Fin variables para las acciones
 
-    //instancias para los productos
+    //variables para los productos
     int productoAE;
     boolean productoEstado;
     //Fin instancias proyecto
@@ -232,7 +232,15 @@ public class ventanaInventario extends javax.swing.JPanel {
             new String [] {
                 "ID", "NOMBRE", "DESCRIPCIÓN", "PRECIO", "EXISTENCIA", "ACTIVO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblProductos);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -418,6 +426,7 @@ public class ventanaInventario extends javax.swing.JPanel {
         } else {
             habilitarCampos(true);
             modoAgregar = true;
+            rp.limpiarCampos();
             habilitarGuardarCancelar(true);
             bttnActDes.setEnabled(false);
             lblActDes.setEnabled(false);
@@ -441,10 +450,10 @@ public class ventanaInventario extends javax.swing.JPanel {
         //Una vez que la query sea exitosa y guarde los cambios, los campos se deshabilitaran
     }//GEN-LAST:event_bttnEditarActionPerformed
 
-    private void txtBusquedaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBusquedaFocusGained
+    private void txtBusquedaFocusGained(java.awt.event.FocusEvent evt) {
         txtBusqueda.setText("");
         txtBusqueda.setForeground(Color.black);
-    }//GEN-LAST:event_txtBusquedaFocusGained
+    }
 
     private void txtBusquedaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBusquedaMouseExited
         if(txtBusqueda.getText().isEmpty()){
@@ -453,10 +462,10 @@ public class ventanaInventario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtBusquedaMouseExited
 
-    private void txtBusquedaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBusquedaMousePressed
+    private void txtBusquedaMousePressed(java.awt.event.MouseEvent evt) {
         txtBusqueda.setText("");
         txtBusqueda.setForeground(Color.black);
-    }//GEN-LAST:event_txtBusquedaMousePressed
+    }
 
     private void bttnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
         if(modoBuscar){

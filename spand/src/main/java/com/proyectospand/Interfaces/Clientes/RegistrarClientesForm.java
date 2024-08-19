@@ -14,8 +14,6 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
      */
     public RegistrarClientesForm() {
         initComponents();
-        lblTelefonoCliente.setVisible(false);
-        txtTelefonoCliente.setVisible(false);
     }
 
     /**
@@ -37,8 +35,6 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
         txtNumeroCliente = new javax.swing.JTextField();
         lblColoniaCliente = new javax.swing.JLabel();
         txtColoniaCliente = new javax.swing.JTextField();
-        lblTelefonoCliente = new javax.swing.JLabel();
-        txtTelefonoCliente = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(230, 230, 250));
 
@@ -147,27 +143,6 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
             }
         });
 
-        lblTelefonoCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblTelefonoCliente.setForeground(new java.awt.Color(102, 102, 102));
-        lblTelefonoCliente.setText("Teléfono*");
-
-        txtTelefonoCliente.setForeground(new java.awt.Color(153, 153, 153));
-        txtTelefonoCliente.setText("Ingresa el teléfono del cliente");
-        txtTelefonoCliente.setEnabled(false);
-        txtTelefonoCliente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTelefonoClienteFocusGained(evt);
-            }
-        });
-        txtTelefonoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtTelefonoClienteMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtTelefonoClienteMousePressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -184,9 +159,7 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
                     .addComponent(lblNumeroCliente)
                     .addComponent(txtNumeroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblColoniaCliente)
-                    .addComponent(txtColoniaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTelefonoCliente)
-                    .addComponent(txtTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtColoniaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(116, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -212,11 +185,7 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
                 .addComponent(lblColoniaCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtColoniaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblTelefonoCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -325,77 +294,62 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtColoniaClienteMousePressed
 
-    private void txtTelefonoClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoClienteMousePressed
-        if (txtTelefonoCliente.getText().equals("Ingresa el teléfono del cliente")){
-            txtTelefonoCliente.setText("");
-            txtTelefonoCliente.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_txtTelefonoClienteMousePressed
-
-    private void txtTelefonoClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoClienteMouseExited
-        if (txtTelefonoCliente.getText().isEmpty()){
-            txtTelefonoCliente.setText("Ingresa el teléfono del cliente");
-            txtTelefonoCliente.setForeground(Color.GRAY);
-        }
-    }//GEN-LAST:event_txtTelefonoClienteMouseExited
-
-    private void txtTelefonoClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoClienteFocusGained
-        if (txtTelefonoCliente.getText().equals("Ingresa el teléfono del cliente")){
-            txtTelefonoCliente.setText("");
-            txtTelefonoCliente.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_txtTelefonoClienteFocusGained
-
     // Métodos GET Y SET
     
-    public JTextField getTxtApellidosCliente() {
-        return txtApellidosCliente;
+    public String getNombre(){
+        return txtNombreCliente.getText(); 
     }
 
-    public void setTxtApellidosCliente(JTextField txtApellidosCliente) {
-        this.txtApellidosCliente = txtApellidosCliente;
+    public String getApellidos(){
+        return txtApellidosCliente.getText();
     }
 
-    public JTextField getTxtCalleCliente() {
-        return txtCalleCliente;
+    public String getCalle(){
+        return txtCalleCliente.getText();
     }
 
-    public void setTxtCalleCliente(JTextField txtCalleCliente) {
-        this.txtCalleCliente = txtCalleCliente;
+    public String getColonia(){
+        return txtColoniaCliente.getText();
     }
 
-    public JTextField getTxtColoniaCliente() {
-        return txtColoniaCliente;
-    }
-
-    public void setTxtColoniaCliente(JTextField txtColoniaCliente) {
-        this.txtColoniaCliente = txtColoniaCliente;
-    }
-
-    public JTextField getTxtNombreCliente() {
-        return txtNombreCliente;
-    }
-
-    public void setTxtNombreCliente(JTextField txtNombreCliente) {
-        this.txtNombreCliente = txtNombreCliente;
-    }
-
-    public JTextField getTxtNumeroCliente() {
-        return txtNumeroCliente;
-    }
-
-    public void setTxtNumeroCliente(JTextField txtNumeroCliente) {
-        this.txtNumeroCliente = txtNumeroCliente;
-    }
-
-    public JTextField getTxtTelefonoCliente() {
-        return txtTelefonoCliente;
-    }
-
-    public void setTxtTelefonoCliente(JTextField txtTelefonoCliente) {
-        this.txtTelefonoCliente = txtTelefonoCliente;
+    public String getNumero(){
+        return txtNumeroCliente.getText();
     }
     
+    public void setNumero(String numero){
+        txtNumeroCliente.setText(numero);
+    }
+
+    public void setNombre(String nombre){
+        txtNombreCliente.setText(nombre);
+    }
+
+    public void setApellidos(String apellidos){
+        txtApellidosCliente.setText(apellidos);
+    }
+
+    public void setCalle(String calle){
+        txtCalleCliente.setText(calle);
+    }
+
+    public void setColonia(String colonia){
+        txtColoniaCliente.setText(colonia);
+    }
+
+
+    public void limpiarCampos(){
+        txtNombreCliente.setText("Ingresa el nombre del cliente");
+        txtNombreCliente.setForeground(Color.GRAY);
+        txtApellidosCliente.setText("Ingresa los apellidos del cliente");
+        txtApellidosCliente.setForeground(Color.GRAY);
+        txtCalleCliente.setText("Ingresa la calle del cliente");
+        txtCalleCliente.setForeground(Color.GRAY);
+        txtColoniaCliente.setText("Ingresa la colonia del cliente");
+        txtColoniaCliente.setForeground(Color.GRAY);
+        txtNumeroCliente.setText("Ingresa el número del cliente");
+        txtNumeroCliente.setForeground(Color.GRAY);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblApellidosCliente;
@@ -403,13 +357,11 @@ public class RegistrarClientesForm extends javax.swing.JPanel {
     private javax.swing.JLabel lblColoniaCliente;
     private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblNumeroCliente;
-    private javax.swing.JLabel lblTelefonoCliente;
     private javax.swing.JTextField txtApellidosCliente;
     private javax.swing.JTextField txtCalleCliente;
     private javax.swing.JTextField txtColoniaCliente;
     private javax.swing.JTextField txtNombreCliente;
     private javax.swing.JTextField txtNumeroCliente;
-    private javax.swing.JTextField txtTelefonoCliente;
     // End of variables declaration//GEN-END:variables
     public Object getTxtNombreCliente;
 }

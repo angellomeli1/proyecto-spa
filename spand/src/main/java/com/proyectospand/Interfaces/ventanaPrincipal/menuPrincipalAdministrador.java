@@ -13,13 +13,14 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
     private ventanaInventario inventario;
     private VentanaProveedor proveedores;
     private VentanaEmpleados empleados;
-    private VentanaClientes clientes = new VentanaClientes();
+    private VentanaClientes clientes;
     private int idEmpleadoActualizar;
     public menuPrincipalAdministrador(Empleados empleado) {
         this.empleado = empleado;
         this.proveedores = new VentanaProveedor(empleado);
         this.inventario = new ventanaInventario(empleado);
         this.empleados = new VentanaEmpleados(empleado);
+        this.clientes = new VentanaClientes(empleado);
         initComponents();
         this.setLocationRelativeTo(null);
         confUI.applyCustomFont(16f, lblBienvenida);

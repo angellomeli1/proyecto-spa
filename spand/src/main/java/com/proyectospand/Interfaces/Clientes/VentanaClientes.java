@@ -1,6 +1,7 @@
 package com.proyectospand.Interfaces.Clientes;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -8,24 +9,51 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
+import com.proyectospand.Entidades.Clientes;
+import com.proyectospand.Entidades.Empleados;
+import com.proyectospand.datos.ClientesDAO;
 
 /**
  *
  * @author omarr
  */
 public class VentanaClientes extends javax.swing.JPanel {
-    RegistrarClientesForm rclient = new RegistrarClientesForm();
+    RegistrarClientesForm rclient = new RegistrarClientesForm(); //objeto para el panel de registrar cliente
+    //Variables para las acciones de los botones (agregar, editar, buscar)
     boolean modoAgregar = false;
     boolean modoEditar = false;
+    boolean modoBuscar = false;
+    //Fin variables para las acciones
+
+    //variables para los clientes
+    int clienteAE;
+    boolean clienteEstado;
+    //Fin variables clientes
+
+    Empleados empleadoE;
+    ClientesDAO clienteDAO = new ClientesDAO();
+    DefaultTableModel modeloTabla;
+
+
+
 
     /**
      * Creates new form VentanaClientes
      */
-    public VentanaClientes() {
+    public VentanaClientes(Empleados empleado) {
         initComponents();
-        
+        this.empleadoE = empleado;
         rclient.setSize(338,452);
         rclient.setLocation(0,0);
         pnlFormClient.removeAll();
@@ -34,6 +62,78 @@ public class VentanaClientes extends javax.swing.JPanel {
         pnlFormClient.repaint();
 
         cargarDatosClientes();
+
+        jTable1.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if(!e.getValueIsAdjusting()) {
+                    if(!modoAgregar) {
+                        int selectedRow = jTable1.getSelectedRow();
+                        if(selectedRow >= 0){
+                            clienteAE = (int)jTable1.getValueAt(selectedRow, 0);
+                            rclient.setNombre((String)jTable1.getValueAt(selectedRow, 1));
+                            rclient.setApellidos((String)jTable1.getValueAt(selectedRow, 2));
+                            rclient.setCalle((String)jTable1.getValueAt(selectedRow, 3));
+                            rclient.setNumero((String)jTable1.getValueAt(selectedRow, 4));
+                            rclient.setColonia((String)jTable1.getValueAt(selectedRow, 5));
+                            String estado = jTable1.getValueAt(selectedRow, 6).toString();
+                            clienteEstado = estado.equalsIgnoreCase("Activo") ? true : false;
+                            habilitarActDes();
+                            if (!modoEditar) {
+                                lblActDes.setText(clienteEstado ? "Desactivar" : "Activar");
+                                lblActDes.revalidate();
+                                lblActDes.repaint();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        txtBusqueda.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actualizarTabla();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actualizarTabla();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actualizarTabla();
+            }
+
+            private void actualizarTabla(){
+                if(!txtBusqueda.getText().equalsIgnoreCase("INGRESA EL NOMBRE DEL CLIENTE A BUSCAR")){
+                    String textoBusqueda = txtBusqueda.getText().trim();
+                    List<Clientes> clientes;
+                    if(textoBusqueda.isEmpty()){
+                        clientes = clienteDAO.listar();
+                    }else{
+                        clientes = clienteDAO.buscar(textoBusqueda);
+                    }
+
+                    DefaultTableModel modeloTabla = (DefaultTableModel)jTable1.getModel();
+                    modeloTabla.setRowCount(0);
+                    for(Clientes cliente : clientes){
+                        Object[] fila = new Object[]{
+                            cliente.getIdCliente(),
+                            cliente.getNombreCliente(),
+                            cliente.getApellidos(),
+                            cliente.getCalle(),
+                            cliente.getNumero(),
+                            cliente.getColonia(),
+                            cliente.getActivo() ? "Activo" : "Inactivo"
+                        };
+                        modeloTabla.addRow(fila);
+                    }
+                }
+            }
+
+        });
     }
 
     /**
@@ -61,8 +161,8 @@ public class VentanaClientes extends javax.swing.JPanel {
         lblEditar = new javax.swing.JLabel();
         bttnBuscar = new javax.swing.JButton();
         lblBuscar = new javax.swing.JLabel();
-        bttnEliminar = new javax.swing.JButton();
-        lblEliminar = new javax.swing.JLabel();
+        bttnActDes = new javax.swing.JButton();
+        lblActDes = new javax.swing.JLabel();
         bttnGuardar = new javax.swing.JButton();
         lblGuardar = new javax.swing.JLabel();
         bttnCancelar = new javax.swing.JButton();
@@ -139,12 +239,34 @@ public class VentanaClientes extends javax.swing.JPanel {
             new String [] {
                 "ID Cliente", "Nombre", "Apellidos", "Calle", "Numero", "Colonia", "Activo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         txtBusqueda.setForeground(new java.awt.Color(153, 153, 153));
         txtBusqueda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtBusqueda.setText("INGRESA EL NOMBRE DEL CLIENTE A BUSCAR");
+        txtBusqueda.setEnabled(false);
+        txtBusqueda.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBusquedaFocusGained(evt);
+            }
+        });
+        txtBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtBusquedaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtBusquedaMousePressed(evt);
+            }
+        });
 
         pnlBotones.setBackground(new java.awt.Color(255, 255, 255));
         pnlBotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -185,6 +307,11 @@ public class VentanaClientes extends javax.swing.JPanel {
         bttnBuscar.setBorder(null);
         bttnBuscar.setBorderPainted(false);
         bttnBuscar.setContentAreaFilled(false);
+        bttnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnBuscarActionPerformed(evt);
+            }
+        });
         pnlBotones.add(bttnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 72, 60));
 
         lblBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -192,21 +319,21 @@ public class VentanaClientes extends javax.swing.JPanel {
         lblBuscar.setText("Buscar");
         pnlBotones.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
 
-        bttnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Eliminar_Proveedor.png"))); // NOI18N
-        bttnEliminar.setBorder(null);
-        bttnEliminar.setBorderPainted(false);
-        bttnEliminar.setContentAreaFilled(false);
-        bttnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        bttnActDes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Eliminar_Proveedor.png"))); // NOI18N
+        bttnActDes.setBorder(null);
+        bttnActDes.setBorderPainted(false);
+        bttnActDes.setContentAreaFilled(false);
+        bttnActDes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttnEliminarActionPerformed(evt);
+                bttnActDesActionPerformed(evt);
             }
         });
-        pnlBotones.add(bttnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 72, 60));
+        pnlBotones.add(bttnActDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 72, 60));
 
-        lblEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblEliminar.setForeground(new java.awt.Color(102, 102, 102));
-        lblEliminar.setText("Eliminar");
-        pnlBotones.add(lblEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
+        lblActDes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblActDes.setForeground(new java.awt.Color(102, 102, 102));
+        lblActDes.setText("Activar");
+        pnlBotones.add(lblActDes, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
 
         bttnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guardar-el-archivo.png"))); // NOI18N
         bttnGuardar.setBorder(null);
@@ -231,6 +358,11 @@ public class VentanaClientes extends javax.swing.JPanel {
         bttnCancelar.setBorderPainted(false);
         bttnCancelar.setContentAreaFilled(false);
         bttnCancelar.setEnabled(false);
+        bttnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnCancelarActionPerformed(evt);
+            }
+        });
         pnlBotones.add(bttnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 72, 60));
 
         lblCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -286,10 +418,19 @@ public class VentanaClientes extends javax.swing.JPanel {
             habilitarCampos(false);
             modoAgregar = false;
             habilitarGuardarCancelar(false);
+            bttnActDes.setEnabled(true);
+            lblActDes.setEnabled(true);
+            lblBuscar.setEnabled(true);
+            bttnBuscar.setEnabled(true);
         } else {
             habilitarCampos(true);
             modoAgregar = true;
+            rclient.limpiarCampos();
             habilitarGuardarCancelar(true);
+            bttnActDes.setEnabled(false);
+            lblActDes.setEnabled(false);
+            lblBuscar.setEnabled(false);
+            bttnBuscar.setEnabled(false);
         }
     }//GEN-LAST:event_bttnAgregarActionPerformed
 
@@ -308,120 +449,101 @@ public class VentanaClientes extends javax.swing.JPanel {
         //Una vez que la query sea exitosa y guarde los cambios, los campos se deshabilitaran
     }//GEN-LAST:event_bttnEditarActionPerformed
 
-    private void bttnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnGuardarActionPerformed
-        if  (modoAgregar == true) {
-            // Obtener los valores de los campos de texto
-            String nombreCliente = rclient.getTxtNombreCliente().getText();
-            String apellidosCliente = rclient.getTxtApellidosCliente().getText();
-            String calleCliente = rclient.getTxtCalleCliente().getText();
-            String numeroCliente = rclient.getTxtNumeroCliente().getText();
-            String coloniaCliente = rclient.getTxtColoniaCliente().getText();
-            String telefonoCliente = rclient.getTxtTelefonoCliente().getText();
-        
-            // Asumimos que el idEmpleado es conocido, aquí por ejemplo es 1
-            int idEmpleado = 1;  
-        
-            // Conectar a la base de datos y llamar al procedimiento almacenado AgregarCliente
-            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbspa", "root", "1613")) {
-                String sql = "{CALL AgregarCliente(?, ?, ?, ?, ?, ?, ?)}";
-                try (CallableStatement stmt = conn.prepareCall(sql)) {
-                    stmt.setInt(1, idEmpleado);
-                    stmt.setString(2, nombreCliente);
-                    stmt.setString(3, apellidosCliente);
-                    stmt.setString(4, calleCliente);
-                    stmt.setString(5, numeroCliente);
-                    stmt.setString(6, coloniaCliente);
-                    stmt.setBoolean(7, true); // Activo
-                    
-                    // Ejecutar el procedimiento almacenado
-                    stmt.execute();
-                    
-                    System.out.println("Cliente agregado exitosamente.");
-                }
-                cargarDatosClientes();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                System.out.println("Error al agregar el cliente: " + ex.getMessage());
-            }  
-        } if (modoAgregar == false) {
-            // Obtener los valores de los campos de texto
-            String nombreCliente = rclient.getTxtNombreCliente().getText();
-            String apellidosCliente = rclient.getTxtApellidosCliente().getText();
-            String calleCliente = rclient.getTxtCalleCliente().getText();
-            String numeroCliente = rclient.getTxtNumeroCliente().getText();
-            String coloniaCliente = rclient.getTxtColoniaCliente().getText();
-            String telefonoCliente = rclient.getTxtTelefonoCliente().getText();
-        
-            // Asumimos que el idEmpleado es conocido, aquí por ejemplo es 1
-            int idEmpleado = 1;  
-            int idCliente = 0;
-
-            // Conectar a la base de datos y llamar al procedimiento almacenado AgregarCliente
-            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
-                String sql = "{CALL ActualizarCliente(?, ?, ?, ?, ?, ?, ?,?)}";
-                try (CallableStatement stmt = conn.prepareCall(sql)) {
-                    stmt.setInt(1, idEmpleado);
-                    stmt.setInt(2, idCliente);
-                    stmt.setString(3, nombreCliente);
-                    stmt.setString(4, apellidosCliente);
-                    stmt.setString(5, calleCliente);
-                    stmt.setString(6, numeroCliente);
-                    stmt.setString(7, coloniaCliente);
-                    stmt.setBoolean(8, true); // Activo
-                    
-                    // Ejecutar el procedimiento almacenado
-                    stmt.execute();
-                    
-                    System.out.println("Cliente actualizado exitosamente.");
-                }
-                cargarDatosClientes();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                System.out.println("Error al actualizar el cliente: " + ex.getMessage());
-            }  
-        } else {
-            System.out.println("Error al agregar el cliente.");
-        }
-    }//GEN-LAST:event_bttnGuardarActionPerformed
-
-    private void bttnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnEliminarActionPerformed
-        // Obtener la fila seleccionada
-    int filaSeleccionada = jTable1.getSelectedRow();
-    int idEmpleado = 1;
-
-    if (filaSeleccionada == -1) {
-        // No se ha seleccionado ninguna fila
-        javax.swing.JOptionPane.showMessageDialog(this, "Por favor, selecciona un cliente para eliminar.", "Advertencia", javax.swing.JOptionPane.WARNING_MESSAGE);
-        return;
+    private void bttnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
+        rclient.limpiarCampos();
+        modoAgregar = false;
+        modoEditar = false;
+        habilitarCampos(false);
+        habilitarGuardarCancelar(false);
+        bttnActDes.setEnabled(true);
+        lblActDes.setEnabled(true);
+        lblBuscar.setEnabled(true);
+        bttnBuscar.setEnabled(true);
+        lblRegistrarCliente.setText("¡REGISTRA UN CLIENTE!");
     }
 
-    // Obtener el ID del cliente de la primera columna
-    int idCliente = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+    private void txtBusquedaFocusGained(java.awt.event.FocusEvent evt) {
+        txtBusqueda.setText("");
+        txtBusqueda.setForeground(Color.black);
+    }
 
-    // Confirmar la eliminación
-    int confirmacion = javax.swing.JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este cliente?", "Confirmación", javax.swing.JOptionPane.YES_NO_OPTION);
+    private void txtBusquedaMousePressed(java.awt.event.MouseEvent evt) {
+        txtBusqueda.setText("");
+        txtBusqueda.setForeground(Color.black);
+    }
 
-    if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
-        // Proceder con la eliminación
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
-            String sql = "{CALL EliminarCliente(?,?)}";
-            try (CallableStatement stmt = conn.prepareCall(sql)) {
-                stmt.setInt(1, idCliente);
-                stmt.setInt(2, idEmpleado);
+    private void txtBusquedaMouseExited(java.awt.event.MouseEvent evt) {
+        if(txtBusqueda.getText().isEmpty()){
+            txtBusqueda.setText("INGRESA EL NOMBRE DEL CLIENTE A BUSCAR");
+            txtBusqueda.setForeground(Color.GRAY);
+        }
+    }
 
-                // Ejecutar el procedimiento almacenado
-                stmt.execute();
-                
-                javax.swing.JOptionPane.showMessageDialog(this, "Cliente eliminado exitosamente.", "Éxito", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            }
-            // Recargar los datos de la tabla
+    private void bttnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
+        if(modoBuscar){
+            txtBusqueda.setEnabled(false);
+            txtBusqueda.setFocusable(false);
+            modoBuscar = false;
+            txtBusqueda.setText("INGRESA EL NOMBRE DEL CLIENTE A BUSCAR");
             cargarDatosClientes();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, "Error al eliminar el cliente: " + ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            txtBusqueda.setEnabled(true);
+            txtBusqueda.setFocusable(true);
+            modoBuscar = true;
         }
     }
-    }//GEN-LAST:event_bttnEliminarActionPerformed
+
+    private void bttnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        String nombreCliente = rclient.getNombre();
+        String apellidos = rclient.getApellidos();
+        String calle = rclient.getCalle();
+        String colonia = rclient.getColonia();
+        String numero = rclient.getNumero();
+        Clientes cliente = new Clientes();
+        if(modoAgregar){
+            cliente = new Clientes(0, nombreCliente, apellidos, calle, numero, colonia, true);
+            if(clienteDAO.insertar(cliente, empleadoE)){
+                JOptionPane.showMessageDialog(null, "¡El cliente se ha registrado exitosamente!");
+                cargarDatosClientes();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "¡El cliente no se ha podido registrar!");
+            }
+        }
+        if(modoEditar){
+            cliente = new Clientes(clienteAE, nombreCliente, apellidos, calle, numero, colonia,clienteEstado);
+            if(clienteDAO.actualizar(cliente, empleadoE)){
+                JOptionPane.showMessageDialog(null, "¡El cliente se ha editado exitosamente!");
+                cargarDatosClientes();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "¡El cliente no se ha podido editar!");
+            }
+        }
+    }
+
+    private void bttnActDesActionPerformed(java.awt.event.ActionEvent evt) {
+        if(clienteEstado){
+            if(clienteDAO.desactivar(clienteAE, empleadoE)){
+                JOptionPane.showMessageDialog(null, "¡El cliente se ha desactivado exitosamente!");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "¡El cliente no se ha podido desactivar!");
+            }
+        }
+        else {
+            if(clienteDAO.activar(clienteAE)){
+                JOptionPane.showMessageDialog(null, "¡El cliente se ha activado exitosamente!");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "¡El cliente no se ha podido activar!");
+            }
+        }
+        clienteAE = 0;
+        habilitarActDes();
+        cargarDatosClientes();
+    }
 
     // Funciones
     private void habilitarCampos(boolean habilitar){
@@ -442,47 +564,48 @@ public class VentanaClientes extends javax.swing.JPanel {
 
     // Función para cargar los datos de la base de datos
     private void cargarDatosClientes() {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Limpiar la tabla
-
-    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBSPA", "root", "1613")) {
-        String sql = "SELECT idCliente, nombreCliente, apellidos, calle, numero, colonia, activo FROM cliente";
-        try (PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Object[] row = new Object[7];
-                row[0] = rs.getInt("idCliente");
-                row[1] = rs.getString("nombreCliente");
-                row[2] = rs.getString("apellidos");
-                row[3] = rs.getString("calle");
-                row[4] = rs.getString("numero");
-                row[5] = rs.getString("colonia");
-                row[6] = rs.getBoolean("activo")?"Si":"No";
-                model.addRow(row); // Agregar fila al modelo
-            }
+        List<Clientes> clientes = clienteDAO.listar();
+        modeloTabla = (DefaultTableModel) jTable1.getModel();
+        modeloTabla.setRowCount(0);
+        for(Clientes cliente : clientes){
+            modeloTabla.addRow(new Object[]{
+                cliente.getIdCliente(),
+                cliente.getNombreCliente(),
+                cliente.getApellidos(),
+                cliente.getCalle(),
+                cliente.getNumero(),
+                cliente.getColonia(),
+                cliente.getActivo() ? "Activo" : "Inactivo"
+            });
         }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        System.out.println("Error al cargar los clientes: " + ex.getMessage());
     }
-}
+
+    public void habilitarActDes(){
+        if(clienteAE == 0){
+            bttnActDes.setEnabled(false);
+            lblActDes.setEnabled(false);
+        } else {
+            bttnActDes.setEnabled(true);
+            lblActDes.setEnabled(true);
+        }
+        lblActDes.setText("Activar");
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bttnActDes;
     private javax.swing.JButton bttnAgregar;
     private javax.swing.JButton bttnBuscar;
     private javax.swing.JButton bttnCancelar;
     private javax.swing.JButton bttnEditar;
-    private javax.swing.JButton bttnEliminar;
     private javax.swing.JButton bttnGuardar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblActDes;
     private javax.swing.JLabel lblAgregar;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCancelar;
     private javax.swing.JLabel lblEditar;
-    private javax.swing.JLabel lblEliminar;
     private javax.swing.JLabel lblGuardar;
     private javax.swing.JLabel lblInformacionCliente;
     private javax.swing.JLabel lblRegistrarCliente;

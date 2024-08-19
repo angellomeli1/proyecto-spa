@@ -8,7 +8,7 @@ public class Clientes {
     private String calle;
     private String numero;
     private String colonia;
-    private TelefonoCliente telefono;
+    private boolean activo;
     
     // CONSTRUCTORES
     // Constructor vacío
@@ -19,18 +19,18 @@ public class Clientes {
         this.calle = "";
         this.numero = "";
         this.colonia = "";
-        this.telefono = new TelefonoCliente();
+        this.activo = true;
     }// Fin del constructor vacío
 
     // Constructor con parámetros
-    public Clientes(int idCliente, String nombreCliente, String apellidos, String calle, String numero,String colonia, TelefonoCliente telefono) {
+    public Clientes(int idCliente, String nombreCliente, String apellidos, String calle, String numero,String colonia, boolean activo) {
         this.idCliente = idCliente;
         this.nombreCliente = nombreCliente;
         this.apellidos = apellidos;
         this.calle = calle;
         this.numero = numero;
         this.colonia = colonia;
-        this.telefono = telefono;
+        this.activo = activo;
     }// Fin del constructor con parámetros
 
     // Constructor con copia
@@ -41,7 +41,7 @@ public class Clientes {
         this.calle = cliente.calle;
         this.numero = cliente.numero;
         this.colonia = cliente.colonia;
-        this.telefono = cliente.telefono;
+        this.activo = cliente.activo;
     }// Fin del constructor con copia
 
     
@@ -93,41 +93,12 @@ public class Clientes {
     public void setColonia(String colonia) {
         this.colonia = colonia;
     } // Fin del encapsulamiento
-
-    public TelefonoCliente getTelefono() {
-        return telefono;
+    
+    public boolean getActivo() {
+        return activo;
     }
 
-    // Métodos
-    
-    public class TelefonoCliente{
-        private int id;
-        private String numero;
-
-        public TelefonoCliente() {
-            this.id = 0;
-            this.numero = "";
-        }
-
-        public TelefonoCliente(int id, String numero) {
-            this.id = id;
-            this.numero = numero;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getNumero() {
-            return numero;
-        }
-
-        public void setNumero(String numero) {
-            this.numero = numero;
-        }
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

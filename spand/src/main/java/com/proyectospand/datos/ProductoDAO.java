@@ -22,6 +22,7 @@ public class ProductoDAO implements Crud {
     private static final String DESACTIVAR_PRODUCTO_PROD = "{CALL EliminarProducto(?,?)}";
     private static final String ACTIVAR_PRODUCTO_QUERY = "UPDATE producto SET activo = ? where idProducto = ?";
     private static final String BUSCAR_PRODUCTO_QUERY = "SELECT * FROM producto where LOWER(nombreProducto) LIKE ?";
+    
     //Fin QUERYS para los productos
 
 
