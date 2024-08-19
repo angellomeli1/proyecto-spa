@@ -1,13 +1,19 @@
 
 package com.proyectospand.Interfaces.ventanaPrincipal;
 import com.proyectospand.Entidades.Empleados;
-import com.proyectospand.Interfaces.confUI;;;
+import com.proyectospand.Interfaces.confUI;
+import com.proyectospand.Interfaces.Clientes.VentanaClientes;
+import com.proyectospand.Interfaces.Inventario.ventanaInventario;;;
 public class menuPrincipalRecepcionista extends javax.swing.JFrame {
 
     private Empleados empleado = new Empleados();
+    private ventanaInventario inventario;
+    private VentanaClientes clientes;
 
     public menuPrincipalRecepcionista(Empleados empleado) {
         this.empleado = empleado;
+        inventario = new ventanaInventario(empleado);
+        clientes = new VentanaClientes(empleado);
         initComponents();
         this.setLocationRelativeTo(null);
         confUI.applyCustomFont(16f, lblBienvenida);
@@ -19,12 +25,10 @@ public class menuPrincipalRecepcionista extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlFondo = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        pnlInterfaces = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        bttnProveedores = new javax.swing.JButton();
-        bttnCitas = new javax.swing.JButton();
-        bttnClientes = new javax.swing.JButton();
         bttnInventario = new javax.swing.JButton();
+        bttnClientes = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblBienvenida = new javax.swing.JLabel();
 
@@ -34,39 +38,36 @@ public class menuPrincipalRecepcionista extends javax.swing.JFrame {
         pnlFondo.setBackground(new java.awt.Color(230, 230, 250));
         pnlFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 0));
+        pnlInterfaces.setPreferredSize(new java.awt.Dimension(1000, 0));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1060, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlInterfacesLayout = new javax.swing.GroupLayout(pnlInterfaces);
+        pnlInterfaces.setLayout(pnlInterfacesLayout);
+        pnlInterfacesLayout.setHorizontalGroup(
+            pnlInterfacesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1180, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlInterfacesLayout.setVerticalGroup(
+            pnlInterfacesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 610, Short.MAX_VALUE)
         );
 
-        pnlFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 1060, 610));
+        pnlFondo.add(pnlInterfaces, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 1180, 610));
 
         jPanel2.setBackground(new java.awt.Color(230, 230, 250));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bttnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
-        bttnProveedores.setText("INVENTARIO");
-        bttnProveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bttnProveedores.setIconTextGap(0);
-        bttnProveedores.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        bttnProveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel2.add(bttnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 424, 118, -1));
-
-        bttnCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
-        bttnCitas.setText("CITAS");
-        bttnCitas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bttnCitas.setIconTextGap(0);
-        bttnCitas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        bttnCitas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel2.add(bttnCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 208, 118, -1));
+        bttnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
+        bttnInventario.setText("INVENTARIO");
+        bttnInventario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bttnInventario.setIconTextGap(0);
+        bttnInventario.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        bttnInventario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bttnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnInventarioActionPerformed(evt);
+            }
+        });
+        jPanel2.add(bttnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 118, -1));
 
         bttnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
         bttnClientes.setText("CLIENTES");
@@ -74,15 +75,12 @@ public class menuPrincipalRecepcionista extends javax.swing.JFrame {
         bttnClientes.setIconTextGap(0);
         bttnClientes.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         bttnClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel2.add(bttnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 100, 118, -1));
-
-        bttnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventario.png"))); // NOI18N
-        bttnInventario.setText("VENTAS");
-        bttnInventario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bttnInventario.setIconTextGap(0);
-        bttnInventario.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        bttnInventario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel2.add(bttnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 316, 118, -1));
+        bttnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnClientesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(bttnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 118, -1));
 
         pnlFondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, 640));
 
@@ -95,7 +93,7 @@ public class menuPrincipalRecepcionista extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(610, Short.MAX_VALUE))
+                .addContainerGap(730, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,15 +103,13 @@ public class menuPrincipalRecepcionista extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        pnlFondo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 50));
+        pnlFondo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,6 +120,24 @@ public class menuPrincipalRecepcionista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttnClientesActionPerformed(java.awt.event.ActionEvent evt) {
+        clientes.setSize(1180,610);
+        clientes.setLocation(0, 0);
+        pnlInterfaces.removeAll();
+        pnlInterfaces.add(clientes);
+        pnlInterfaces.revalidate();
+        pnlInterfaces.repaint();
+    }
+
+    private void bttnInventarioActionPerformed(java.awt.event.ActionEvent evt) {
+        inventario.setSize(1180,610);
+        inventario.setLocation(0, 0);
+        pnlInterfaces.removeAll();
+        pnlInterfaces.add(inventario);
+        pnlInterfaces.revalidate();
+        pnlInterfaces.repaint();
+    }
 
     /**
      * @param args the command line arguments
@@ -162,14 +176,12 @@ public class menuPrincipalRecepcionista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bttnCitas;
     private javax.swing.JButton bttnClientes;
     private javax.swing.JButton bttnInventario;
-    private javax.swing.JButton bttnProveedores;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblBienvenida;
     private javax.swing.JPanel pnlFondo;
+    private javax.swing.JPanel pnlInterfaces;
     // End of variables declaration//GEN-END:variables
 }
