@@ -6,6 +6,7 @@ public class Proveedores {
     private String nombreProv;
     private String calle;
     private String colonia;
+    private boolean activo;
 
     // CONSTRUCTORES
     // Constructor vacío
@@ -14,14 +15,16 @@ public class Proveedores {
         this.nombreProv = "";
         this.calle = "";
         this.colonia = "";
+        this.activo = true;
     }// Fin del constructor vacío
 
     // Constructor con parámetros
-    public Proveedores(int idProveedores, String nombreProv, String calle, String colonia) {
+    public Proveedores(int idProveedores, String nombreProv, String calle, String colonia, boolean activo) {
         this.idProveedores = idProveedores;
         this.nombreProv = nombreProv;
         this.calle = calle;
         this.colonia = colonia;
+        this.activo = activo;
     }// Fin del constructor con parámetros
 
     // Constructor con copia
@@ -30,6 +33,7 @@ public class Proveedores {
         this.nombreProv = provedor.nombreProv;
         this.calle = provedor.calle;
         this.colonia = provedor.colonia;
+        this.activo = provedor.activo;
     }// Fin del constructor con copia
 
     // ENCAPSULAMIENTO
@@ -63,5 +67,13 @@ public class Proveedores {
 
     public void setColonia(String colonia) {
         this.colonia = colonia;
+    }
+
+    public boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

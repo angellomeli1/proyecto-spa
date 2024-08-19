@@ -30,10 +30,6 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
         txtCalle = new javax.swing.JTextField();
         lblColonia = new javax.swing.JLabel();
         txtColonia = new javax.swing.JTextField();
-        lblTelefono = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JTextField();
-        lblCorreo = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(230, 230, 250));
 
@@ -100,70 +96,21 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
             }
         });
 
-        lblTelefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblTelefono.setForeground(new java.awt.Color(102, 102, 102));
-        lblTelefono.setText("Télefono*");
-
-        txtTelefono.setForeground(new java.awt.Color(153, 153, 153));
-        txtTelefono.setText("Ingresa el teléfono");
-        txtTelefono.setEnabled(false);
-        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTelefonoFocusGained(evt);
-            }
-        });
-        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtTelefonoMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtTelefonoMousePressed(evt);
-            }
-        });
-
-        lblCorreo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblCorreo.setForeground(new java.awt.Color(102, 102, 102));
-        lblCorreo.setText("Correo*");
-
-        txtCorreo.setForeground(new java.awt.Color(153, 153, 153));
-        txtCorreo.setText("Ingresa el correo");
-        txtCorreo.setEnabled(false);
-        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCorreoFocusGained(evt);
-            }
-        });
-        txtCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtCorreoMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtCorreoMousePressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtColonia, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(lblNombreProv)
-                                        .addComponent(txtNombreProv, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                                        .addComponent(lblCalle)
-                                        .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
-                                    .addComponent(lblColonia)))
-                            .addComponent(lblTelefono)))
-                    .addComponent(lblCorreo)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtColonia, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblNombreProv)
+                            .addComponent(txtNombreProv, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                            .addComponent(lblCalle)
+                            .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                        .addComponent(lblColonia)))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -181,15 +128,7 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
                 .addComponent(lblColonia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(lblTelefono)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblCorreo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -256,59 +195,59 @@ public class RegistrarProveedorForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtColoniaMouseExited
 
-    private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
-        if (txtTelefono.getText().equals("Ingresa el teléfono")){
-            txtTelefono.setText("");
-            txtTelefono.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_txtTelefonoFocusGained
+    //Metodos para obtener los datos de los textFields
 
-    private void txtTelefonoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMousePressed
-        if (txtTelefono.getText().equals("Ingresa el teléfono")){
-            txtTelefono.setText("");
-            txtTelefono.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_txtTelefonoMousePressed
+    public String getNombreProv(){
+        return txtNombreProv.getText();
+    }
+    public String getCalle(){
+        return txtCalle.getText();
+    }
+    public String getColonia(){
+        return txtColonia.getText();
+    }
 
-    private void txtTelefonoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseExited
-        if (txtTelefono.getText().isEmpty()){
-            txtTelefono.setText("Ingresa el teléfono");
-            txtTelefono.setForeground(Color.GRAY);
-        }
-    }//GEN-LAST:event_txtTelefonoMouseExited
+    //Fin de los metodos para obtener los datos de los textFields
 
-    private void txtCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusGained
-        if (txtCorreo.getText().equals("Ingresa el correo")){
-            txtCorreo.setText("");
-            txtCorreo.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_txtCorreoFocusGained
+    //Metodos para setear los datos de los textFields
 
-    private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
-        if (txtCorreo.getText().equals("Ingresa el correo")){
-            txtCorreo.setText("");
-            txtCorreo.setForeground(Color.black);
-        }
-    }//GEN-LAST:event_txtCorreoMousePressed
+    public void setNombreProv(String nombreProv){
+        txtNombreProv.setText(nombreProv);
+    }
+    public void setCalle(String calle){
+        txtCalle.setText(calle);
+    }
+    public void setColonia(String colonia){
+        txtColonia.setText(colonia);
+    }
 
-    private void txtCorreoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMouseExited
-        if (txtCorreo.getText().isEmpty()){
-            txtCorreo.setText("Ingresa el correo");
-            txtCorreo.setForeground(Color.GRAY);
-        }
-    }//GEN-LAST:event_txtCorreoMouseExited
+    //Fin de los metodos para setear los datos de los textFields
+
+    //Fin de los metodos para obtener los datos de los campos
+
+    //Metodo para habilitar y limpiar los campos
+
+    public void habilitarCampos(boolean habilitar){
+        txtNombreProv.setEnabled(habilitar);
+        txtCalle.setEnabled(habilitar);
+        txtColonia.setEnabled(habilitar);
+    }
+
+    public void limpiarCampos(){
+        txtNombreProv.setText("Ingresa el nombre del proveedor");
+        txtCalle.setText("Ingresa la calle");
+        txtColonia.setText("Ingresa la colonia");
+    }
+
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblCalle;
     private javax.swing.JLabel lblColonia;
-    private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblNombreProv;
-    private javax.swing.JLabel lblTelefono;
     private javax.swing.JTextField txtCalle;
     private javax.swing.JTextField txtColonia;
-    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombreProv;
-    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

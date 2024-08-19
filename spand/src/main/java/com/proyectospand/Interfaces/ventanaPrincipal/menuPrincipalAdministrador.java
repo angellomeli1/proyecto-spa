@@ -11,12 +11,13 @@ public class menuPrincipalAdministrador extends javax.swing.JFrame {
 
     private Empleados empleado = new Empleados();
     private ventanaInventario inventario = new ventanaInventario();
-    private VentanaProveedor proveedores = new VentanaProveedor();
+    private VentanaProveedor proveedores;
     private VentanaEmpleados empleados;
     private VentanaClientes clientes = new VentanaClientes();
     private int idEmpleadoActualizar;
     public menuPrincipalAdministrador(Empleados empleado) {
         this.empleado = empleado;
+        this.proveedores = new VentanaProveedor(empleado);
         empleados = new VentanaEmpleados(empleado);
         initComponents();
         this.setLocationRelativeTo(null);

@@ -125,33 +125,33 @@ import com.proyectospand.ConexionDB.conexionDB;
                 private void actualizarTabla() {
                     if(!txtBusqueda.getText().equals("INGRESA EL NOMBRE DEL EMPLEADO A BUSCAR")){
                         String textoBusqueda = txtBusqueda.getText().trim();
-                    List<Empleados> empleados;
+                        List<Empleados> empleados;
             
-                    if (textoBusqueda.isEmpty()) {
-                        empleados = empleadosDAO.listar(); // Método que lista todos los empleados
-                    } else {
-                        empleados = empleadosDAO.buscar(textoBusqueda);
-                    }
-            
-                    // Actualiza el modelo de la tabla con los resultados
-                    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-                    modelo.setRowCount(0); // Limpiar la tabla
-            
-                    for (Empleados empleado : empleados) {
-                        Object[] fila = new Object[]{
-                            empleado.getIdEmpleado(),
-                            empleado.getTipo().getNombreTipo(),
-                            empleado.getNombreEmp(),
-                            empleado.getApellidosEmp(),
-                            empleado.getCalle(),
-                            empleado.getNumero(),
-                            empleado.getColonia(),
-                            empleado.getNss(),
-                            empleado.getFechaDeContrato(),
-                            empleado.getActivo() ? "Activo" : "Inactivo"
-                        };
-                        modelo.addRow(fila);
-                    }
+                        if (textoBusqueda.isEmpty()) {
+                            empleados = empleadosDAO.listar(); // Método que lista todos los empleados
+                        } else {
+                            empleados = empleadosDAO.buscar(textoBusqueda);
+                        }
+                
+                        // Actualiza el modelo de la tabla con los resultados
+                        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+                        modelo.setRowCount(0); // Limpiar la tabla
+                
+                        for (Empleados empleado : empleados) {
+                            Object[] fila = new Object[]{
+                                empleado.getIdEmpleado(),
+                                empleado.getTipo().getNombreTipo(),
+                                empleado.getNombreEmp(),
+                                empleado.getApellidosEmp(),
+                                empleado.getCalle(),
+                                empleado.getNumero(),
+                                empleado.getColonia(),
+                                empleado.getNss(),
+                                empleado.getFechaDeContrato(),
+                                empleado.getActivo() ? "Activo" : "Inactivo"
+                            };
+                            modelo.addRow(fila);
+                        }
                     }
                 }
             });
@@ -463,7 +463,6 @@ import com.proyectospand.ConexionDB.conexionDB;
             clave = remp2.getClave();
             int idTipoEmpleado = remp2.getTipoEmpleado();
             TipoEmpleado tipo = obtenerTipoEmpleado(idTipoEmpleado);
-            System.out.println("El tipo de empleado es: " + tipo.getIdTipoEmpleado());
             Empleados empleado = new Empleados();
             if(modoAgregar){
                 empleado = new Empleados(0,nombreEmpleado,tipo,apellidosEmp,calle,numero,colonia,nss,fechaContrato,true,clave);
@@ -494,7 +493,7 @@ import com.proyectospand.ConexionDB.conexionDB;
         if(txtBusqueda.getText().isEmpty()){
            txtBusqueda.setText("INGRESA EL NOMBRE DEL EMPLEADO A BUSCAR");
            txtBusqueda.setForeground(Color.GRAY);
-       }
+        }
     }//GEN-LAST:event_txtBusquedaMouseExited
 
     private void bttnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnCancelarActionPerformed
@@ -508,6 +507,7 @@ import com.proyectospand.ConexionDB.conexionDB;
         lblBuscar.setEnabled(true);
         bttnActDes.setEnabled(true);
         lblActDes.setEnabled(true);
+        lblRegistrarEmpleado.setText("¡REGISTRA UN EMPLEADO!");
     }//GEN-LAST:event_bttnCancelarActionPerformed
 
     private void txtBusquedaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBusquedaMousePressed

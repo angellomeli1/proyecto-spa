@@ -35,15 +35,11 @@ public class EmpleadosDAO implements Crud{
     @Override
     public List<Empleados> listar() {
         List<Empleados> empleados = new ArrayList<>();
-        String query = LISTAR_EMPLEADO_QUERY;
-
         try (Connection conn = connection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query);
+             PreparedStatement stmt = conn.prepareStatement(LISTAR_EMPLEADO_QUERY);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("idEmpleado"));
-            System.out.println("Nombre: " + rs.getString("nombreEmp"));
                 TipoEmpleado tipo = new TipoEmpleado(
                     rs.getInt("idTipoEmpleado"),
                     rs.getString("nombreTipo"),
