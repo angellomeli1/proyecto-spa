@@ -150,8 +150,8 @@ public class RegistrarProductoForm extends javax.swing.JPanel {
         txtNombreProducto.setText("Ingresa el nombre del producto");
         txtDescProducto.setText("Ingresa la descripción del producto");
         txtPrecioProducto.setText("Ingresa el precio del producto");
-        jcombProveedor.setSelectedIndex(0);
         jcomGananciaProducto.setSelectedIndex(0);
+        txtCantidadProducto.setText("Ingresa la cantidad de producto");
     }
 
     //Metodos para obtener y guardar los datos

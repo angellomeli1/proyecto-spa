@@ -483,7 +483,7 @@ public class VentanaProveedor extends javax.swing.JPanel {
     private void bttnActDesActionPerformed(java.awt.event.ActionEvent evt) {
         if(provedorEstado){
             if(proDAO.desactivar(provedorAE, empleadoE)){
-                JOptionPane.showMessageDialog(null, "Proveedoredor desactivado con exito");
+                JOptionPane.showMessageDialog(null, "Proveedor desactivado con exito");
                 cargarDatosProveedores();
             } else{
                 JOptionPane.showMessageDialog(null, "No se pudo desactivar el proveedor");
@@ -491,7 +491,7 @@ public class VentanaProveedor extends javax.swing.JPanel {
         }
         else {
             if(proDAO.activar(provedorAE)){
-                JOptionPane.showMessageDialog(null, "Proveedoredor activado con exito");
+                JOptionPane.showMessageDialog(null, "Proveedor activado con exito");
                 cargarDatosProveedores();
             } else{
                 JOptionPane.showMessageDialog(null, "No se pudo activar el proveedor");
@@ -507,7 +507,7 @@ public class VentanaProveedor extends javax.swing.JPanel {
         if(modoAgregar){
             proveedor = new Proveedores(0,nombreProveedor,calleProveedor,coloniaProveedor,true);
             if(proDAO.insertar(proveedor, empleadoE)){
-                JOptionPane.showMessageDialog(null, "Proveedoredor agregado con exito");
+                JOptionPane.showMessageDialog(null, "Proveedor agregado con exito");
                 cargarDatosProveedores();
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo agregar el proveedor");
@@ -516,7 +516,7 @@ public class VentanaProveedor extends javax.swing.JPanel {
         if(modoEditar){
             proveedor = new Proveedores(provedorAE,nombreProveedor,calleProveedor,coloniaProveedor,provedorEstado);
             if(proDAO.actualizar(proveedor, empleadoE)){
-                JOptionPane.showMessageDialog(null, "Proveedoredor editado con exito");
+                JOptionPane.showMessageDialog(null, "Proveedor editado con exito");
                 cargarDatosProveedores();
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo editar el proveedor");
